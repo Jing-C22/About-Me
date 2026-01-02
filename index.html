@@ -3,676 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sweetfish.site</title>
+    <title>Cosmosteria</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="main-nav">
-        <a href="#" class="site-title" data-page="home">sweetfish.site</a>
+        <a href="#" class="site-title" data-page="home">Cosmosteria</a>
         <div class="nav-links">
-            <a href="#" data-page="living-room">living room</a>
-            <a href="#" data-page="studio">studio</a>
+            <a href="#" data-page="blog">Blog</a>
+            <a href="#" data-page="gallery">Gallery</a>
+            <a href="#" data-page="drawings">Drawings</a>
+            <a href="#" data-page="about">About</a>
+            <button class="admin-toggle" id="adminToggle" title="Admin">✦</button>
         </div>
     </nav>
+
+    <!-- Admin Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="modal-close" id="closeLogin">&times;</button>
+            <h2>Admin Access</h2>
+            <form id="loginForm">
+                <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="current-password">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <p class="error-msg" id="loginError"></p>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h3>✦ Admin Panel</h3>
+            <button class="btn btn-small" id="logoutBtn">Logout</button>
+        </div>
+        <div class="admin-buttons">
+            <button class="btn btn-admin" data-type="blog">+ New Blog Post</button>
+            <button class="btn btn-admin" data-type="gallery">+ New Photo</button>
+            <button class="btn btn-admin" data-type="drawing">+ New Drawing</button>
+        </div>
+    </div>
+
+    <!-- Add Content Modal -->
+    <div class="modal-overlay" id="addContentModal">
+        <div class="modal modal-large">
+            <button class="modal-close" id="closeAddContent">&times;</button>
+            <h2 id="addContentTitle">Add New Content</h2>
+            
+            <!-- Blog Form -->
+            <form id="blogForm" class="content-form">
+                <div class="form-group">
+                    <label for="blogTitle">Title</label>
+                    <input type="text" id="blogTitle" placeholder="Enter blog title" required>
+                </div>
+                <div class="form-group">
+                    <label for="blogDate">Date</label>
+                    <input type="date" id="blogDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="blogContent">Content</label>
+                    <textarea id="blogContent" rows="10" placeholder="Write your blog post here..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="blogImage">Cover Image URL (optional)</label>
+                    <input type="url" id="blogImage" placeholder="https://example.com/image.jpg">
+                </div>
+                <button type="submit" class="btn btn-primary">Publish Post</button>
+            </form>
+
+            <!-- Gallery Form -->
+            <form id="galleryForm" class="content-form">
+                <div class="form-group">
+                    <label for="photoTitle">Title</label>
+                    <input type="text" id="photoTitle" placeholder="Enter photo title" required>
+                </div>
+                <div class="form-group">
+                    <label for="photoDate">Date</label>
+                    <input type="date" id="photoDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="photoUrl">Image URL</label>
+                    <input type="url" id="photoUrl" placeholder="https://example.com/photo.jpg" required>
+                </div>
+                <div class="form-group">
+                    <label for="photoCaption">Caption (optional)</label>
+                    <input type="text" id="photoCaption" placeholder="Add a caption">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Photo</button>
+            </form>
+
+            <!-- Drawing Form -->
+            <form id="drawingForm" class="content-form">
+                <div class="form-group">
+                    <label for="drawingTitle">Title</label>
+                    <input type="text" id="drawingTitle" placeholder="Enter drawing title" required>
+                </div>
+                <div class="form-group">
+                    <label for="drawingDate">Date</label>
+                    <input type="date" id="drawingDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="drawingUrl">Image URL</label>
+                    <input type="url" id="drawingUrl" placeholder="https://example.com/drawing.jpg" required>
+                </div>
+                <div class="form-group">
+                    <label for="drawingDescription">Description (optional)</label>
+                    <textarea id="drawingDescription" rows="3" placeholder="Describe your artwork"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Drawing</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Home Page -->
     <main id="home" class="page active">
         <div class="container">
-            <section class="hero-card">
-                <h1 class="page-title">Ayu's Webhouse</h1>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=800&q=80" alt="Sweetfish swimming" class="dithered-effect">
-                </div>
-                <p class="intro-text">hi! this is my personal site where you can find my art, read whatever i've been writing, and peruse some interesting images and links. always a work in progress.</p>
+            <section class="hero">
+                <h1 class="hero-title">Cosmosteria</h1>
+                <p class="hero-subtitle">A personal corner of the universe</p>
+                <div class="hero-decoration">✦ ✦ ✦</div>
             </section>
 
-            <div class="two-column">
-                <section class="card currently">
-                    <h2>Currently</h2>
-                    <p><strong>it's</strong> a cold evening</p>
-                    <p><strong>listening to</strong> food sizzling on the pan</p>
-                    <p><strong>reading</strong> butter, asako yuzuki</p>
-                    <p><strong>last updated</strong> december 31, 2025</p>
-                </section>
+            <section class="home-grid">
+                <a href="#" class="home-card" data-page="blog">
+                    <div class="card-icon">✎</div>
+                    <h2>Blog</h2>
+                    <p>Thoughts and writings</p>
+                </a>
+                <a href="#" class="home-card" data-page="gallery">
+                    <div class="card-icon">❐</div>
+                    <h2>Gallery</h2>
+                    <p>Photography</p>
+                </a>
+                <a href="#" class="home-card" data-page="drawings">
+                    <div class="card-icon">✿</div>
+                    <h2>Drawings</h2>
+                    <p>Art and illustrations</p>
+                </a>
+            </section>
 
-                <section class="card find-me">
-                    <h2>Find me elsewhere</h2>
-                    <p><strong>itch.io</strong> <a href="#">sweetfish</a></p>
-                    <p><strong>neocities</strong> <a href="#">sweetfish</a></p>
-                    <p><strong>bluesky</strong> <a href="#">sweetfish.site</a></p>
-                    <p><strong>mastodon</strong> <a href="#">fish@trilobite.space</a></p>
-                </section>
+            <section class="recent-section">
+                <h2>Recent Updates</h2>
+                <div id="recentPosts" class="recent-posts">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Blog Page -->
+    <main id="blog" class="page">
+        <div class="container">
+            <header class="page-header">
+                <h1>Blog</h1>
+                <p>Thoughts, stories, and musings</p>
+            </header>
+            <div id="blogList" class="blog-list">
+                <!-- Populated by JavaScript -->
             </div>
-
-            <div class="two-column">
-                <section class="card updates">
-                    <h2>Updates</h2>
-                    <div class="update-item">
-                        <h3>Latest post</h3>
-                        <a href="#" data-page="checkout-post" data-post="checkout-38">The Checkout Counter #38</a>
-                    </div>
-                    <hr>
-                    <div class="update-item">
-                        <h4>Dec 05 2025</h4>
-                        <p>new page: <a href="#">advent calendar 2025</a> ❄</p>
-                    </div>
-                    <hr>
-                    <div class="update-item">
-                        <h4>Oct 01 2025</h4>
-                        <p>i'm doing <a href="#">weird web october</a> once more!</p>
-                    </div>
-                </section>
-
-                <section class="card guestbook">
-                    <h2>Guestbook</h2>
-                    <div class="guestbook-entries">
-                        <div class="entry">
-                            <span class="entry-text">wish I discovered it earlier so I could experience that satisfying click more</span>
-                        </div>
-                        <div class="entry">
-                            <span class="name">j</span>
-                            <span class="entry-text">the buttons are soooo cool</span>
-                            <span class="time">1 week ago</span>
-                        </div>
-                        <div class="entry">
-                            <span class="name">arda</span>
-                            <span class="entry-text">whats up dawg</span>
-                            <span class="time">1 week ago</span>
-                        </div>
-                        <div class="entry">
-                            <span class="name">arda</span>
-                            <span class="entry-text">want a sprite cranberry</span>
-                            <span class="time">1 week ago</span>
-                        </div>
-                        <div class="entry">
-                            <span class="name">mon</span>
-                            <span class="entry-text">i love the buttons!! ty for the advent calendar!</span>
-                            <span class="time">1 week ago</span>
-                        </div>
-                        <div class="entry">
-                            <span class="name">rixx</span>
-                            <span class="entry-text">the dithering on this site is so pretty</span>
-                            <span class="time">1 week ago</span>
-                        </div>
-                    </div>
-                    <div class="guestbook-form">
-                        <input type="text" placeholder="name" class="gb-name">
-                        <input type="text" placeholder="message" class="gb-message">
-                    </div>
-                </section>
+            <div class="empty-state" id="blogEmpty">
+                <p>No blog posts yet. Check back soon!</p>
             </div>
         </div>
     </main>
 
-    <!-- Living Room Page -->
-    <main id="living-room" class="page">
-        <div class="container">
-            <section class="hero-card">
-                <h1 class="page-title">Living Room</h1>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Cozy living room" class="dithered-effect">
-                </div>
-            </section>
+    <!-- Single Blog Post View -->
+    <main id="blog-post" class="page">
+        <div class="container container-narrow">
+            <article id="blogPostContent" class="blog-article">
+                <!-- Populated by JavaScript -->
+            </article>
+            <a href="#" class="back-link" data-page="blog">← Back to Blog</a>
+        </div>
+    </main>
 
-            <div class="two-column">
-                <a href="#" class="card nav-card" data-page="about">
-                    <h2>About</h2>
-                </a>
-                <a href="#" class="card nav-card" data-page="jukebox">
-                    <h2>Jukebox</h2>
-                </a>
+    <!-- Gallery Page -->
+    <main id="gallery" class="page">
+        <div class="container">
+            <header class="page-header">
+                <h1>Gallery</h1>
+                <p>Captured moments</p>
+            </header>
+            <div id="galleryGrid" class="gallery-grid">
+                <!-- Populated by JavaScript -->
             </div>
-            <div class="two-column">
-                <a href="#" class="card nav-card" data-page="library">
-                    <h2>Library</h2>
-                </a>
-                <a href="#" class="card nav-card" data-page="cinema">
-                    <h2>Cinema</h2>
-                </a>
+            <div class="empty-state" id="galleryEmpty">
+                <p>No photos yet. Check back soon!</p>
             </div>
         </div>
     </main>
 
-    <!-- Studio Page -->
-    <main id="studio" class="page">
+    <!-- Drawings Page -->
+    <main id="drawings" class="page">
         <div class="container">
-            <section class="hero-card">
-                <h1 class="page-title">Studio</h1>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80" alt="Art studio" class="dithered-effect">
-                </div>
-            </section>
-
-            <div class="three-column">
-                <a href="#" class="card nav-card" data-page="writings">
-                    <h2>Writings</h2>
-                    <p>Blog posts and essays</p>
-                </a>
-                <a href="#" class="card nav-card" data-page="art-studio">
-                    <h2>Art Studio</h2>
-                    <p>Doodles and such</p>
-                </a>
-                <a href="#" class="card nav-card" data-page="darkroom">
-                    <h2>Darkroom</h2>
-                    <p>Digital photography</p>
-                </a>
+            <header class="page-header">
+                <h1>Drawings</h1>
+                <p>Art and illustrations</p>
+            </header>
+            <div id="drawingsGrid" class="gallery-grid drawings-grid">
+                <!-- Populated by JavaScript -->
             </div>
-            <div class="single-column">
-                <a href="#" class="card nav-card" data-page="checkout-counter">
-                    <h2>Checkout Counter</h2>
-                    <p>Monthly recommendations</p>
-                </a>
+            <div class="empty-state" id="drawingsEmpty">
+                <p>No drawings yet. Check back soon!</p>
             </div>
         </div>
     </main>
 
     <!-- About Page -->
     <main id="about" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">About</h1>
-                <p class="intro-text">i'm ayu and i do graphic design for work, and i like to do a lot of other things for fun.</p>
+        <div class="container container-narrow">
+            <header class="page-header">
+                <h1>About</h1>
+            </header>
+            <section class="about-content">
+                <p>Welcome to Cosmosteria, my personal space on the web.</p>
+                <p>Here you'll find my writings, photography, and artwork. Feel free to explore and stay awhile.</p>
+                <div class="about-decoration">✦</div>
             </section>
-
-            <div class="two-column">
-                <section class="card">
-                    <h2>What's your favorite...?</h2>
-                    <p>☞ <strong>ice cream flavor?</strong> spumoni</p>
-                    <p>☞ <strong>herb?</strong> dill</p>
-                    <p>☞ <strong>kitchen appliance?</strong> my rice cooker</p>
-                    <p>☞ <strong>bird call?</strong> <a href="#">mourning dove</a></p>
-                    <p>☞ <strong>labyrinth?</strong> the reims labyrinth</p>
-                </section>
-
-                <section class="card">
-                    <h2>"What's a sweetfish?"</h2>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=400&q=80" alt="Sweetfish illustration" class="dithered-effect">
-                    </div>
-                </section>
-            </div>
-
-            <a href="#" class="card nav-card back-link" data-page="living-room">
-                <span>← Living room</span>
-            </a>
         </div>
     </main>
 
-    <!-- Jukebox Page -->
-    <main id="jukebox" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">Jukebox</h1>
-                <p>some good tunes. refresh for a new one ♫</p>
-            </section>
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <img src="" alt="" id="lightboxImage">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
 
-            <section class="card video-container">
-                <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </section>
-
-            <a href="#" class="card nav-card back-link" data-page="living-room">
-                <span>← Living room</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- Library Page -->
-    <main id="library" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">Library</h1>
-                <p>a corner of the <a href="#" data-page="living-room">living room</a> is lined with crooked shelves, which branch off into long corridors of books. it's unclear how deep into the house some of these hallways go.</p>
-                <p>my favorite books. i also log what i read on <a href="#">storygraph</a>.</p>
-                
-                <div class="filter-tags">
-                    <button class="tag active">all</button>
-                    <button class="tag">fiction</button>
-                    <button class="tag">nonfiction</button>
-                    <button class="tag">comedic</button>
-                    <button class="tag">contemporary</button>
-                    <button class="tag">fantasy</button>
-                    <button class="tag">historical fiction</button>
-                    <button class="tag">horror</button>
-                    <button class="tag">literary</button>
-                    <button class="tag">mystery</button>
-                    <button class="tag">romance</button>
-                    <button class="tag">science fiction</button>
-                    <button class="tag">short stories</button>
-                    <button class="tag">thriller</button>
-                </div>
-                <div class="sort-tags">
-                    <button class="tag active">publication date (new–old)</button>
-                    <button class="tag">publication date (old–new)</button>
-                    <button class="tag">title (A–Z)</button>
-                </div>
-            </section>
-
-            <div class="gallery book-gallery">
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1677956510i/123276182.jpg" alt="The Disenchantment">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1485235692i/24724718.jpg" alt="All the Horses of Iceland">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1602862879i/54304115.jpg" alt="LaserWriter II">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1612791626i/56197346.jpg" alt="Matrix">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1603206535i/50892433.jpg" alt="Several People Are Typing">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1623083045i/58283080.jpg" alt="Taiwan Travelogue">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1517963084i/34897895.jpg" alt="Piranesi">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1531147687i/40876575.jpg" alt="Ornamentalism">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1514285040i/36348525.jpg" alt="Severance">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1464899547i/28510840.jpg" alt="Convenience Store Woman">
-                </div>
-            </div>
-
-            <a href="#" class="card nav-card back-link" data-page="living-room">
-                <span>← Living room</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- Cinema Page -->
-    <main id="cinema" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">The closet cinema</h1>
-                <p>a closet door in the <a href="#" data-page="living-room">living room</a> opens to an unusually large and dark space, filled with rows of cushioned seats. it's unclear how large this room is.</p>
-                <p>my favorite films. i also log what i watch on <a href="#">letterboxd</a>.</p>
-                
-                <div class="filter-tags">
-                    <button class="tag active">all</button>
-                    <button class="tag">action</button>
-                    <button class="tag">animation</button>
-                    <button class="tag">adventure</button>
-                    <button class="tag">comedy</button>
-                    <button class="tag">drama</button>
-                    <button class="tag">fantasy</button>
-                    <button class="tag">horror</button>
-                    <button class="tag">mystery</button>
-                    <button class="tag">romance</button>
-                    <button class="tag">science fiction</button>
-                    <button class="tag">thriller</button>
-                </div>
-                <div class="sort-tags">
-                    <button class="tag active">release date (new–old)</button>
-                    <button class="tag">release date (old–new)</button>
-                    <button class="tag">title (A–Z)</button>
-                </div>
-            </section>
-
-            <div class="gallery film-gallery">
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/9zcbqSxdsRMZWHYtyCd1nXPr2xq.jpg" alt="The Peasants">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/wvqdJLVh0mSblly0VVrCHSBbMUJ.jpg" alt="Bastarden">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/kQs6keheMwCxJxrzV83VUwFtHkB.jpg" alt="Anatomy of a Fall">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/AcKVlWaNVVVFQwro3nLXqPljcYA.jpg" alt="Nope">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/qsdjk9oAKSQMWs0Vt5Pyfh6O4GZ.jpg" alt="Lamb">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/nFzFimfNwjY2LnLLu7mHUqEv1nh.jpg" alt="Marona's Fantastic Tale">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/2IjJqgOjAbIlxf7lNXXP6pKUdsw.jpg" alt="Portrait of a Lady on Fire">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/3nBrkqMygiTocJjCL8OcHjfFtbn.jpg" alt="The Lighthouse">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://image.tmdb.org/t/p/w500/fjksrP8uNsvl1DmI2Xj9Y3xrFQ8.jpg" alt="La Casa Lobo">
-                </div>
-            </div>
-
-            <a href="#" class="card nav-card back-link" data-page="living-room">
-                <span>← Living room</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- Writings Page -->
-    <main id="writings" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">Blog posts</h1>
-                <p>you can subscribe via <a href="#">RSS</a>, if you'd like.</p>
-            </section>
-
-            <section class="card blog-list">
-                <a href="#" class="blog-entry" data-page="blog-post" data-post="ripley">
-                    <span class="blog-title">A Hot Ripley Summer</span>
-                    <span class="blog-date">September 09 2025</span>
-                </a>
-                <a href="#" class="blog-entry" data-page="blog-post" data-post="of-the-year">
-                    <span class="blog-title">Of the year (2024)</span>
-                    <span class="blog-date">January 02 2025</span>
-                </a>
-                <a href="#" class="blog-entry" data-page="blog-post" data-post="picasso">
-                    <span class="blog-title">Picasso</span>
-                    <span class="blog-date">October 27 2024</span>
-                </a>
-            </section>
-
-            <a href="#" class="card nav-card back-link" data-page="studio">
-                <span>← Studio</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- Individual Blog Post Page -->
-    <main id="blog-post" class="page">
-        <div class="container blog-container">
-            <article class="card blog-article">
-                <header class="blog-header">
-                    <h1 class="blog-post-title">A Hot Ripley Summer</h1>
-                    <p class="blog-subtitle">i watched all six screen adaptations of the tom ripley books (and you can, too)</p>
-                    <div class="blog-hero-image">
-                        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80" alt="Cinema" class="dithered-effect">
-                    </div>
-                    <time class="blog-date-full">September 9, 2025</time>
-                </header>
-
-                <div class="blog-content">
-                    <p>Having completed Patricia Highsmith's <em>Ripliad</em> books earlier this year, I knew I would get around to all the screen adaptations eventually—and what better way to spend a hot, humid summer than to immerse oneself in a cinematic world of murder and duplicity?</p>
-                    
-                    <p>Tom Ripley is a destitute American who gets sent to Italy to convince a wealthy man's son to return home. After a few murders and swindles, Tom is able to enjoy a layabout life in Europe with an art forging business on the side. The Ripley films (and one limited series) traverse sun-soaked Italian shorelines to the grimy Parisian metro; lush and saturated cinematography to stone-cold black and white; explicitly gay Ripleys to explicitly straight Ripleys; and everything in between.</p>
-                    
-                    <p>Summer is coming to a close, and I now know the triumphs and defeats, the epic highs and lows of Tom Ripley. Below are some thoughts on each adaptation.</p>
-
-                    <section class="film-review">
-                        <h2>Purple Noon (<em>Plein soleil</em>, 1960)</h2>
-                        <p class="film-meta">Based on Book 1: The Talented Mr. Ripley</p>
-                        <blockquote>Tom Ripley is sent to Italy to convince a wealthy man's son to return home.</blockquote>
-                        <p>Rewatch. I somehow forgot this was shot in color and have no idea why—the opening scene is gorgeously saturated and the palette is a constant visual treat. It's incredible that this movie came out just five years after the book's release, providing a perfect postcard image of Highsmith's Italy.</p>
-                        <p>I remember not having any strong feelings about this movie (especially when compared to the other two adaptations of the same book), but I'm more fond of it now. I can really see how it influenced later versions. Love the focus on the Work and how diligently Ripley covers up his tracks (purchasing a whole projector and some kind of drafting contraption just to practice signature forgery...the man's thorough!). That diligence, of course, means nothing when he lets his guard down and thinks he's gotten away with everything. I initially disliked the ending and how much it deviated from the source material, but after this watch i think it's a fitting conclusion for this version of the character (smug, French).</p>
-                    </section>
-
-                    <section class="film-review">
-                        <h2>The American Friend (<em>Der amerikanische Freund</em>, 1977)</h2>
-                        <p class="film-meta">Based on Book 3: Ripley's Game</p>
-                        <blockquote>A terminally ill picture framer is manipulated into becoming an assassin.</blockquote>
-                        <p>First watch. Dennis Hopper as Tom Ripley is an interesting choice—he brings a nervous, almost twitchy energy that's quite different from the cool, calculated Ripley of other adaptations. The film noir atmosphere is thick, with Wenders creating a paranoid, alienating vision of Europe.</p>
-                    </section>
-                </div>
-
-                <nav class="blog-nav">
-                    <a href="#" class="blog-nav-link" data-page="writings">← Back to Writings</a>
-                </nav>
-            </article>
-        </div>
-    </main>
-
-    <!-- Art Studio Page -->
-    <main id="art-studio" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">Art studio</h1>
-                <p>i like to draw (mostly fanart) in my spare time. click to view the full size image.</p>
-                <p>a more comprehensive collection of my art/doodles/etc. can be found on <a href="#">tumblr</a>.</p>
-            </section>
-
-            <div class="gallery art-gallery">
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80" alt="Art piece 1">
-                </div>
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=400&q=80" alt="Art piece 2">
-                </div>
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&q=80" alt="Art piece 3">
-                </div>
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=400&q=80" alt="Art piece 4">
-                </div>
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1582201942988-13e60e4556ee?w=400&q=80" alt="Art piece 5">
-                </div>
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4?w=400&q=80" alt="Art piece 6">
-                </div>
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=400&q=80" alt="Art piece 7">
-                </div>
-                <div class="gallery-item art-item">
-                    <img src="https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?w=400&q=80" alt="Art piece 8">
-                </div>
-            </div>
-
-            <a href="#" class="card nav-card back-link" data-page="studio">
-                <span>← Studio</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- Darkroom Page -->
-    <main id="darkroom" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">Darkroom</h1>
-                <p>some of my photos, taken with an iphone SE. click to view the full size image.</p>
-            </section>
-
-            <section class="card year-section">
-                <h2>2024</h2>
-            </section>
-
-            <div class="gallery photo-gallery">
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Mountain road">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Ski lift">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80" alt="Mountain view">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Beach rocks">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80" alt="Building">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&q=80" alt="Ocean">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=80" alt="Church sign">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Beach">
-                </div>
-            </div>
-
-            <section class="card year-section">
-                <h2>2023</h2>
-            </section>
-
-            <div class="gallery photo-gallery">
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80" alt="Sky">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=400&q=80" alt="City">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80" alt="Street">
-                </div>
-                <div class="gallery-item photo-item">
-                    <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=400&q=80" alt="Architecture">
-                </div>
-            </div>
-
-            <a href="#" class="card nav-card back-link" data-page="studio">
-                <span>← Studio</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- Checkout Counter Page -->
-    <main id="checkout-counter" class="page">
-        <div class="container">
-            <section class="card">
-                <h1 class="page-title">Checkout Counter</h1>
-                <p>monthly recommendations of films, books, articles, and interesting links from around the web.</p>
-            </section>
-
-            <section class="card blog-list">
-                <a href="#" class="blog-entry" data-page="checkout-post" data-post="checkout-38">
-                    <span class="blog-title">The Checkout Counter #38</span>
-                    <span class="blog-date">December 2025</span>
-                </a>
-                <a href="#" class="blog-entry" data-page="checkout-post" data-post="checkout-37">
-                    <span class="blog-title">The Checkout Counter #37</span>
-                    <span class="blog-date">November 2025</span>
-                </a>
-                <a href="#" class="blog-entry" data-page="checkout-post" data-post="checkout-36">
-                    <span class="blog-title">The Checkout Counter #36</span>
-                    <span class="blog-date">October 2025</span>
-                </a>
-            </section>
-
-            <a href="#" class="card nav-card back-link" data-page="studio">
-                <span>← Studio</span>
-            </a>
-        </div>
-    </main>
-
-    <!-- Checkout Post Page -->
-    <main id="checkout-post" class="page">
-        <div class="container checkout-container">
-            <article class="card checkout-article">
-                <header class="checkout-header">
-                    <div class="checkout-title-row">
-                        <h1>The Checkout Counter #38</h1>
-                        <span class="checkout-date">December 2025</span>
-                    </div>
-                    
-                    <div class="checkout-featured">
-                        <div class="featured-item">
-                            <span class="featured-label">Flow</span>
-                            <div class="featured-image">
-                                <img src="https://image.tmdb.org/t/p/w500/dzDK2TMXsxrolGVSZLKn9Qfvlyb.jpg" alt="Flow" class="dithered-effect">
-                            </div>
-                        </div>
-                        <div class="featured-item">
-                            <span class="featured-label">Victorian Psycho</span>
-                            <div class="featured-image">
-                                <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1696359807i/145291024.jpg" alt="Victorian Psycho" class="dithered-effect">
-                            </div>
-                        </div>
-                        <div class="featured-item">
-                            <span class="featured-label">Misericordia</span>
-                            <div class="featured-image">
-                                <img src="https://image.tmdb.org/t/p/w500/sKQ7pUjWgQ7lXsGcyGWqYwDUMhX.jpg" alt="Misericordia" class="dithered-effect">
-                            </div>
-                        </div>
-                    </div>
-                </header>
-
-                <div class="checkout-intro">
-                    <p>it's the last checkout counter of the year! if you missed it, <a href="#">here's my 2025 advent calendar</a>, now complete.</p>
-                    <p>i hope your new year is kind. thanks, as always, for reading ❄</p>
-                </div>
-
-                <div class="checkout-sections">
-                    <section class="checkout-section">
-                        <h2>Film</h2>
-                        <div class="rec-item">
-                            <p>☞ <a href="#"><em>Misericordia</em> (<em>Miséricorde</em>)</a>, 2024 <sup>[1]</sup></p>
-                            <p class="rec-meta">Drama, thriller, comedy. Jérémie returns to his hometown for the village baker's funeral.</p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#"><em>Flow</em> (<em>Straume</em>)</a>, 2024 <sup>[2]</sup></p>
-                            <p class="rec-meta">Animation, fantasy, adventure. A great flood brings a cat, capybara, lemur, Labrador, and secretarybird together on a single sailboat.</p>
-                        </div>
-                    </section>
-
-                    <section class="checkout-section">
-                        <h2>Books</h2>
-                        <div class="rec-item">
-                            <p>☞ <em>Victorian Psycho</em>, Virginia Feito <sup>[3]</sup></p>
-                            <p class="rec-meta">Historical fiction, comedic, horror. A new governess arrives at Ensor House. In three months, everyone will be dead.</p>
-                        </div>
-                    </section>
-
-                    <section class="checkout-section">
-                        <h2>Articles &amp; essays</h2>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">Fran Sans Essay</a>, Emily Sneddon <sup>[4]</sup></p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">Performing Peter: South of the Circle and Fuzzy Choice</a>, Hannah Nicklin <sup>[5]</sup></p>
-                        </div>
-                    </section>
-
-                    <section class="checkout-section">
-                        <h2>Around the web</h2>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">The I Can Eat Glass Project</a></p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">Velocipedia</a></p>
-                            <p class="rec-meta">Bicycle art</p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">Intertapes</a></p>
-                            <p class="rec-meta">Cassette tape collection</p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">WindowSwap</a></p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">The Price Of Zines Is Too Damn High</a></p>
-                            <p class="rec-meta">Zine</p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">Fictional Brands Archive</a></p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">Phinxel's Phield Notes</a></p>
-                            <p class="rec-meta">A guide to Decker, made in Decker</p>
-                        </div>
-                        <div class="rec-item">
-                            <p>☞ <a href="#">L.A. Street Names</a></p>
-                        </div>
-                    </section>
-                </div>
-
-                <nav class="checkout-nav">
-                    <a href="#" class="checkout-nav-link prev" data-page="checkout-post" data-post="checkout-37">← November 2025</a>
-                    <a href="#" class="checkout-nav-link next">January 2026 →</a>
-                </nav>
-            </article>
-        </div>
-    </main>
+    <footer class="main-footer">
+        <p>© 2025 Cosmosteria</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
