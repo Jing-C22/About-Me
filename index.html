@@ -6,7 +6,7 @@
     <title>Cosmosteria</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,229 +14,458 @@
     <nav class="main-nav">
         <a href="#" class="site-title" data-page="home">Cosmosteria</a>
         <div class="nav-links">
-            <a href="#" data-page="blog">Blog</a>
-            <a href="#" data-page="gallery">Gallery</a>
-            <a href="#" data-page="drawings">Drawings</a>
-            <a href="#" data-page="about">About</a>
-            <button class="admin-toggle" id="adminToggle" title="Admin">✦</button>
+            <a href="#" data-page="living-room">living room</a>
+            <a href="#" data-page="studio">studio</a>
         </div>
     </nav>
-
-    <!-- Admin Login Modal -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal">
-            <button class="modal-close" id="closeLogin">&times;</button>
-            <h2>Admin Access</h2>
-            <form id="loginForm">
-                <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="current-password">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-            <p class="error-msg" id="loginError"></p>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">
-            <h3>✦ Admin Panel</h3>
-            <button class="btn btn-small" id="logoutBtn">Logout</button>
-        </div>
-        <div class="admin-buttons">
-            <button class="btn btn-admin" data-type="blog">+ New Blog Post</button>
-            <button class="btn btn-admin" data-type="gallery">+ New Photo</button>
-            <button class="btn btn-admin" data-type="drawing">+ New Drawing</button>
-        </div>
-    </div>
-
-    <!-- Add Content Modal -->
-    <div class="modal-overlay" id="addContentModal">
-        <div class="modal modal-large">
-            <button class="modal-close" id="closeAddContent">&times;</button>
-            <h2 id="addContentTitle">Add New Content</h2>
-            
-            <!-- Blog Form -->
-            <form id="blogForm" class="content-form">
-                <div class="form-group">
-                    <label for="blogTitle">Title</label>
-                    <input type="text" id="blogTitle" placeholder="Enter blog title" required>
-                </div>
-                <div class="form-group">
-                    <label for="blogDate">Date</label>
-                    <input type="date" id="blogDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="blogContent">Content</label>
-                    <textarea id="blogContent" rows="10" placeholder="Write your blog post here..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="blogImage">Cover Image URL (optional)</label>
-                    <input type="url" id="blogImage" placeholder="https://example.com/image.jpg">
-                </div>
-                <button type="submit" class="btn btn-primary">Publish Post</button>
-            </form>
-
-            <!-- Gallery Form -->
-            <form id="galleryForm" class="content-form">
-                <div class="form-group">
-                    <label for="photoTitle">Title</label>
-                    <input type="text" id="photoTitle" placeholder="Enter photo title" required>
-                </div>
-                <div class="form-group">
-                    <label for="photoDate">Date</label>
-                    <input type="date" id="photoDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="photoUrl">Image URL</label>
-                    <input type="url" id="photoUrl" placeholder="https://example.com/photo.jpg" required>
-                </div>
-                <div class="form-group">
-                    <label for="photoCaption">Caption (optional)</label>
-                    <input type="text" id="photoCaption" placeholder="Add a caption">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Photo</button>
-            </form>
-
-            <!-- Drawing Form -->
-            <form id="drawingForm" class="content-form">
-                <div class="form-group">
-                    <label for="drawingTitle">Title</label>
-                    <input type="text" id="drawingTitle" placeholder="Enter drawing title" required>
-                </div>
-                <div class="form-group">
-                    <label for="drawingDate">Date</label>
-                    <input type="date" id="drawingDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="drawingUrl">Image URL</label>
-                    <input type="url" id="drawingUrl" placeholder="https://example.com/drawing.jpg" required>
-                </div>
-                <div class="form-group">
-                    <label for="drawingDescription">Description (optional)</label>
-                    <textarea id="drawingDescription" rows="3" placeholder="Describe your artwork"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Add Drawing</button>
-            </form>
-        </div>
-    </div>
 
     <!-- Home Page -->
     <main id="home" class="page active">
         <div class="container">
-            <section class="hero">
-                <h1 class="hero-title">Cosmosteria</h1>
-                <p class="hero-subtitle">A personal corner of the universe</p>
-                <div class="hero-decoration">✦ ✦ ✦</div>
+            <section class="hero-card">
+                <h1 class="page-title">Cosmosteria</h1>
+                <div class="hero-image">
+                    <!-- Add your hero image here -->
+                    <div class="placeholder-image">Your image here</div>
+                </div>
+                <p class="intro-text">hi! this is my personal site where you can find my art, read whatever i've been writing, and peruse some interesting images and links. always a work in progress.</p>
             </section>
 
-            <section class="home-grid">
-                <a href="#" class="home-card" data-page="blog">
-                    <div class="card-icon">✎</div>
-                    <h2>Blog</h2>
-                    <p>Thoughts and writings</p>
-                </a>
-                <a href="#" class="home-card" data-page="gallery">
-                    <div class="card-icon">❐</div>
-                    <h2>Gallery</h2>
-                    <p>Photography</p>
-                </a>
-                <a href="#" class="home-card" data-page="drawings">
-                    <div class="card-icon">✿</div>
-                    <h2>Drawings</h2>
-                    <p>Art and illustrations</p>
-                </a>
-            </section>
+            <div class="two-column">
+                <section class="card currently">
+                    <h2>Currently</h2>
+                    <p><strong>it's</strong> </p>
+                    <p><strong>listening to</strong> </p>
+                    <p><strong>reading</strong> </p>
+                    <p><strong>last updated</strong> </p>
+                </section>
 
-            <section class="recent-section">
-                <h2>Recent Updates</h2>
-                <div id="recentPosts" class="recent-posts">
-                    <!-- Populated by JavaScript -->
+                <section class="card find-me">
+                    <h2>Find me elsewhere</h2>
+                    <p><strong>itch.io</strong> <a href="#"></a></p>
+                    <p><strong>neocities</strong> <a href="#"></a></p>
+                    <p><strong>bluesky</strong> <a href="#"></a></p>
+                    <p><strong>mastodon</strong> <a href="#"></a></p>
+                </section>
+            </div>
+
+            <div class="two-column">
+                <section class="card updates">
+                    <h2>Updates</h2>
+                    <div class="update-item">
+                        <h3>Latest post</h3>
+                        <a href="#" data-page="checkout-post" data-post="checkout-1"></a>
+                    </div>
+                    <hr>
+                    <div class="update-item">
+                        <h4></h4>
+                        <p></p>
+                    </div>
+                </section>
+
+                <section class="card guestbook">
+                    <h2>Guestbook</h2>
+                    <div class="guestbook-entries">
+                        <!-- Guestbook entries will appear here -->
+                    </div>
+                    <div class="guestbook-form">
+                        <input type="text" placeholder="name" class="gb-name">
+                        <input type="text" placeholder="message" class="gb-message">
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Living Room Page -->
+    <main id="living-room" class="page">
+        <div class="container">
+            <section class="hero-card">
+                <h1 class="page-title">Living Room</h1>
+                <div class="hero-image">
+                    <div class="placeholder-image">Your image here</div>
                 </div>
             </section>
+
+            <div class="two-column">
+                <a href="#" class="card nav-card" data-page="about">
+                    <h2>About</h2>
+                </a>
+                <a href="#" class="card nav-card" data-page="jukebox">
+                    <h2>Jukebox</h2>
+                </a>
+            </div>
+            <div class="two-column">
+                <a href="#" class="card nav-card" data-page="library">
+                    <h2>Library</h2>
+                </a>
+                <a href="#" class="card nav-card" data-page="cinema">
+                    <h2>Cinema</h2>
+                </a>
+            </div>
         </div>
     </main>
 
-    <!-- Blog Page -->
-    <main id="blog" class="page">
+    <!-- Studio Page -->
+    <main id="studio" class="page">
         <div class="container">
-            <header class="page-header">
-                <h1>Blog</h1>
-                <p>Thoughts, stories, and musings</p>
-            </header>
-            <div id="blogList" class="blog-list">
-                <!-- Populated by JavaScript -->
-            </div>
-            <div class="empty-state" id="blogEmpty">
-                <p>No blog posts yet. Check back soon!</p>
-            </div>
-        </div>
-    </main>
+            <section class="hero-card">
+                <h1 class="page-title">Studio</h1>
+                <div class="hero-image">
+                    <div class="placeholder-image">Your image here</div>
+                </div>
+            </section>
 
-    <!-- Single Blog Post View -->
-    <main id="blog-post" class="page">
-        <div class="container container-narrow">
-            <article id="blogPostContent" class="blog-article">
-                <!-- Populated by JavaScript -->
-            </article>
-            <a href="#" class="back-link" data-page="blog">← Back to Blog</a>
-        </div>
-    </main>
-
-    <!-- Gallery Page -->
-    <main id="gallery" class="page">
-        <div class="container">
-            <header class="page-header">
-                <h1>Gallery</h1>
-                <p>Captured moments</p>
-            </header>
-            <div id="galleryGrid" class="gallery-grid">
-                <!-- Populated by JavaScript -->
+            <div class="three-column">
+                <a href="#" class="card nav-card" data-page="writings">
+                    <h2>Writings</h2>
+                    <p>Blog posts and essays</p>
+                </a>
+                <a href="#" class="card nav-card" data-page="art-studio">
+                    <h2>Art Studio</h2>
+                    <p>Doodles and such</p>
+                </a>
+                <a href="#" class="card nav-card" data-page="darkroom">
+                    <h2>Darkroom</h2>
+                    <p>Digital photography</p>
+                </a>
             </div>
-            <div class="empty-state" id="galleryEmpty">
-                <p>No photos yet. Check back soon!</p>
-            </div>
-        </div>
-    </main>
-
-    <!-- Drawings Page -->
-    <main id="drawings" class="page">
-        <div class="container">
-            <header class="page-header">
-                <h1>Drawings</h1>
-                <p>Art and illustrations</p>
-            </header>
-            <div id="drawingsGrid" class="gallery-grid drawings-grid">
-                <!-- Populated by JavaScript -->
-            </div>
-            <div class="empty-state" id="drawingsEmpty">
-                <p>No drawings yet. Check back soon!</p>
+            <div class="single-column">
+                <a href="#" class="card nav-card" data-page="checkout-counter">
+                    <h2>Checkout Counter</h2>
+                    <p>Monthly recommendations</p>
+                </a>
             </div>
         </div>
     </main>
 
     <!-- About Page -->
     <main id="about" class="page">
-        <div class="container container-narrow">
-            <header class="page-header">
-                <h1>About</h1>
-            </header>
-            <section class="about-content">
-                <p>Welcome to Cosmosteria, my personal space on the web.</p>
-                <p>Here you'll find my writings, photography, and artwork. Feel free to explore and stay awhile.</p>
-                <div class="about-decoration">✦</div>
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">About</h1>
+                <p class="intro-text"></p>
             </section>
+
+            <div class="two-column">
+                <section class="card">
+                    <h2>What's your favorite...?</h2>
+                    <p>☞ <strong>ice cream flavor?</strong> </p>
+                    <p>☞ <strong>herb?</strong> </p>
+                    <p>☞ <strong>kitchen appliance?</strong> </p>
+                    <p>☞ <strong>bird call?</strong> </p>
+                    <p>☞ <strong>labyrinth?</strong> </p>
+                </section>
+
+                <section class="card">
+                    <h2>"What's a Cosmosteria?"</h2>
+                    <div class="about-image">
+                        <div class="placeholder-image">Your image here</div>
+                    </div>
+                </section>
+            </div>
+
+            <a href="#" class="card nav-card back-link" data-page="living-room">
+                <span>← Living room</span>
+            </a>
         </div>
     </main>
 
-    <!-- Image Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close">&times;</button>
-        <img src="" alt="" id="lightboxImage">
-        <p class="lightbox-caption" id="lightboxCaption"></p>
-    </div>
+    <!-- Jukebox Page -->
+    <main id="jukebox" class="page">
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">Jukebox</h1>
+                <p>some good tunes. refresh for a new one ♫</p>
+            </section>
 
-    <footer class="main-footer">
-        <p>© 2025 Cosmosteria</p>
-    </footer>
+            <section class="card video-container">
+                <!-- Add your YouTube embed here -->
+                <div class="placeholder-image" style="height: 400px;">Your YouTube embed here</div>
+            </section>
+
+            <a href="#" class="card nav-card back-link" data-page="living-room">
+                <span>← Living room</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Library Page -->
+    <main id="library" class="page">
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">Library</h1>
+                <p>a corner of the <a href="#" data-page="living-room">living room</a> is lined with crooked shelves, which branch off into long corridors of books. it's unclear how deep into the house some of these hallways go.</p>
+                <p>my favorite books. i also log what i read on <a href="#">storygraph</a>.</p>
+                
+                <div class="filter-tags">
+                    <button class="tag active">all</button>
+                    <button class="tag">fiction</button>
+                    <button class="tag">nonfiction</button>
+                    <button class="tag">comedic</button>
+                    <button class="tag">contemporary</button>
+                    <button class="tag">fantasy</button>
+                    <button class="tag">historical fiction</button>
+                    <button class="tag">horror</button>
+                    <button class="tag">literary</button>
+                    <button class="tag">mystery</button>
+                    <button class="tag">romance</button>
+                    <button class="tag">science fiction</button>
+                    <button class="tag">short stories</button>
+                    <button class="tag">thriller</button>
+                </div>
+                <div class="sort-tags">
+                    <button class="tag active">publication date (new–old)</button>
+                    <button class="tag">publication date (old–new)</button>
+                    <button class="tag">title (A–Z)</button>
+                </div>
+            </section>
+
+            <div class="gallery book-gallery">
+                <!-- Add your book covers here -->
+                <div class="gallery-item placeholder-image">Book 1</div>
+                <div class="gallery-item placeholder-image">Book 2</div>
+                <div class="gallery-item placeholder-image">Book 3</div>
+                <div class="gallery-item placeholder-image">Book 4</div>
+            </div>
+
+            <a href="#" class="card nav-card back-link" data-page="living-room">
+                <span>← Living room</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Cinema Page -->
+    <main id="cinema" class="page">
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">The closet cinema</h1>
+                <p>a closet door in the <a href="#" data-page="living-room">living room</a> opens to an unusually large and dark space, filled with rows of cushioned seats. it's unclear how large this room is.</p>
+                <p>my favorite films. i also log what i watch on <a href="#">letterboxd</a>.</p>
+                
+                <div class="filter-tags">
+                    <button class="tag active">all</button>
+                    <button class="tag">action</button>
+                    <button class="tag">animation</button>
+                    <button class="tag">adventure</button>
+                    <button class="tag">comedy</button>
+                    <button class="tag">drama</button>
+                    <button class="tag">fantasy</button>
+                    <button class="tag">horror</button>
+                    <button class="tag">mystery</button>
+                    <button class="tag">romance</button>
+                    <button class="tag">science fiction</button>
+                    <button class="tag">thriller</button>
+                </div>
+                <div class="sort-tags">
+                    <button class="tag active">release date (new–old)</button>
+                    <button class="tag">release date (old–new)</button>
+                    <button class="tag">title (A–Z)</button>
+                </div>
+            </section>
+
+            <div class="gallery film-gallery">
+                <!-- Add your movie posters here -->
+                <div class="gallery-item placeholder-image">Film 1</div>
+                <div class="gallery-item placeholder-image">Film 2</div>
+                <div class="gallery-item placeholder-image">Film 3</div>
+                <div class="gallery-item placeholder-image">Film 4</div>
+            </div>
+
+            <a href="#" class="card nav-card back-link" data-page="living-room">
+                <span>← Living room</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Writings Page -->
+    <main id="writings" class="page">
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">Blog posts</h1>
+                <p>you can subscribe via <a href="#">RSS</a>, if you'd like.</p>
+            </section>
+
+            <section class="card blog-list">
+                <!-- Add your blog entries here -->
+                <a href="#" class="blog-entry" data-page="blog-post" data-post="post-1">
+                    <span class="blog-title">Your First Blog Post</span>
+                    <span class="blog-date">January 01 2026</span>
+                </a>
+            </section>
+
+            <a href="#" class="card nav-card back-link" data-page="studio">
+                <span>← Studio</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Individual Blog Post Page -->
+    <main id="blog-post" class="page">
+        <div class="container blog-container">
+            <article class="card blog-article">
+                <header class="blog-header">
+                    <h1 class="blog-post-title">Blog Post Title</h1>
+                    <p class="blog-subtitle">Subtitle goes here</p>
+                    <div class="blog-hero-image">
+                        <div class="placeholder-image">Your image here</div>
+                    </div>
+                    <time class="blog-date-full">January 1, 2026</time>
+                </header>
+
+                <div class="blog-content">
+                    <p>Your blog content goes here...</p>
+                </div>
+
+                <nav class="blog-nav">
+                    <a href="#" class="blog-nav-link" data-page="writings">← Back to Writings</a>
+                </nav>
+            </article>
+        </div>
+    </main>
+
+    <!-- Art Studio Page -->
+    <main id="art-studio" class="page">
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">Art studio</h1>
+                <p>i like to draw (mostly fanart) in my spare time. click to view the full size image.</p>
+                <p>a more comprehensive collection of my art/doodles/etc. can be found on <a href="#">tumblr</a>.</p>
+            </section>
+
+            <div class="gallery art-gallery">
+                <!-- Add your artwork here -->
+                <div class="gallery-item art-item placeholder-image">Art 1</div>
+                <div class="gallery-item art-item placeholder-image">Art 2</div>
+                <div class="gallery-item art-item placeholder-image">Art 3</div>
+                <div class="gallery-item art-item placeholder-image">Art 4</div>
+            </div>
+
+            <a href="#" class="card nav-card back-link" data-page="studio">
+                <span>← Studio</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Darkroom Page -->
+    <main id="darkroom" class="page">
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">Darkroom</h1>
+                <p>some of my photos. click to view the full size image.</p>
+            </section>
+
+            <section class="card year-section">
+                <h2>2026</h2>
+            </section>
+
+            <div class="gallery photo-gallery">
+                <!-- Add your photos here -->
+                <div class="gallery-item photo-item placeholder-image">Photo 1</div>
+                <div class="gallery-item photo-item placeholder-image">Photo 2</div>
+                <div class="gallery-item photo-item placeholder-image">Photo 3</div>
+                <div class="gallery-item photo-item placeholder-image">Photo 4</div>
+            </div>
+
+            <a href="#" class="card nav-card back-link" data-page="studio">
+                <span>← Studio</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Checkout Counter Page -->
+    <main id="checkout-counter" class="page">
+        <div class="container">
+            <section class="card">
+                <h1 class="page-title">Checkout Counter</h1>
+                <p>monthly recommendations of films, books, articles, and interesting links from around the web.</p>
+            </section>
+
+            <section class="card blog-list">
+                <!-- Add your checkout counter entries here -->
+                <a href="#" class="blog-entry" data-page="checkout-post" data-post="checkout-1">
+                    <span class="blog-title">The Checkout Counter #1</span>
+                    <span class="blog-date">January 2026</span>
+                </a>
+            </section>
+
+            <a href="#" class="card nav-card back-link" data-page="studio">
+                <span>← Studio</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Checkout Post Page -->
+    <main id="checkout-post" class="page">
+        <div class="container checkout-container">
+            <article class="card checkout-article">
+                <header class="checkout-header">
+                    <div class="checkout-title-row">
+                        <h1>The Checkout Counter #1</h1>
+                        <span class="checkout-date">January 2026</span>
+                    </div>
+                    
+                    <div class="checkout-featured">
+                        <!-- Add your featured items here -->
+                        <div class="featured-item">
+                            <span class="featured-label">Featured 1</span>
+                            <div class="featured-image placeholder-image">Image</div>
+                        </div>
+                        <div class="featured-item">
+                            <span class="featured-label">Featured 2</span>
+                            <div class="featured-image placeholder-image">Image</div>
+                        </div>
+                        <div class="featured-item">
+                            <span class="featured-label">Featured 3</span>
+                            <div class="featured-image placeholder-image">Image</div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="checkout-intro">
+                    <p>Your intro text here.</p>
+                </div>
+
+                <div class="checkout-sections">
+                    <section class="checkout-section">
+                        <h2>Film</h2>
+                        <div class="rec-item">
+                            <p>☞ <a href="#"><em>Film Title</em></a>, Year</p>
+                            <p class="rec-meta">Genre. Description.</p>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+                        <h2>Books</h2>
+                        <div class="rec-item">
+                            <p>☞ <em>Book Title</em>, Author</p>
+                            <p class="rec-meta">Genre. Description.</p>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+                        <h2>Articles &amp; essays</h2>
+                        <div class="rec-item">
+                            <p>☞ <a href="#">Article Title</a>, Author</p>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+                        <h2>Around the web</h2>
+                        <div class="rec-item">
+                            <p>☞ <a href="#">Link Title</a></p>
+                            <p class="rec-meta">Description</p>
+                        </div>
+                    </section>
+                </div>
+
+                <nav class="checkout-nav">
+                    <a href="#" class="checkout-nav-link prev">← Previous Month</a>
+                    <a href="#" class="checkout-nav-link next">Next Month →</a>
+                </nav>
+            </article>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
