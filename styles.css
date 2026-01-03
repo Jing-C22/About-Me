@@ -1,24 +1,24 @@
-/* CSS Custom Properties - Color Palette */
+/* 
+    cosmosteria styles
+    inspired by studio ghibli films ~
+    totoro's forest greens, howl's sky blues, chihiro's warm sunset pinks
+*/
+
 :root {
-    --main-bold: #5F849C;
-    --accent: #474747;
-    --complementary: #DAE4EB;
-    --light-neutral: #FEFEFE;
-    --dark-neutral: #9E9383;
-    
-    /* Applied colors - Light theme */
-    --bg-primary: #F5F0EB;
-    --bg-secondary: #EDE8E3;
-    --card-bg: var(--light-neutral);
-    --card-border: #D4CFC9;
-    --text-primary: var(--accent);
-    --text-secondary: #6b6b6b;
-    --link-color: var(--main-bold);
-    --link-hover: #4a6d80;
-    --nav-border: var(--main-bold);
+    /* ghibli color palette */
+    --forest-green: #5a7247;
+    --sky-blue: #7ba3b4;
+    --sunset-pink: #e8b4b8;
+    --cream: #fdf8f0;
+    --warm-white: #fffef9;
+    --soft-brown: #8b7355;
+    --meadow: #a8c686;
+    --cloud: #f0ebe3;
+    --text-dark: #4a4a4a;
+    --text-light: #6b6b6b;
 }
 
-/* Reset and Base Styles */
+/* reset stuff */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -32,49 +32,37 @@ html {
 
 body {
     font-family: 'Lora', Georgia, serif;
-    background-color: var(--bg-primary);
+    background-color: var(--cream);
+    /* subtle dreamy gradient - like a ghibli sky */
     background-image: 
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(0, 0, 0, 0.02) 2px,
-            rgba(0, 0, 0, 0.02) 4px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(0, 0, 0, 0.02) 2px,
-            rgba(0, 0, 0, 0.02) 4px
-        );
-    color: var(--text-primary);
-    line-height: 1.6;
+        radial-gradient(ellipse at top, rgba(168, 198, 134, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(232, 180, 184, 0.1) 0%, transparent 50%);
+    color: var(--text-dark);
+    line-height: 1.7;
     min-height: 100vh;
 }
 
-/* Typography */
+/* fonts - VT323 for headers gives it that handwritten feel */
 h1, h2, h3, h4 {
     font-family: 'VT323', monospace;
     font-weight: 400;
     letter-spacing: 0.5px;
+    color: var(--forest-green);
 }
 
 .page-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
-    color: var(--text-primary);
 }
 
 h2 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     margin-bottom: 0.75rem;
-    color: var(--text-primary);
 }
 
 h3, h4 {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--soft-brown);
 }
 
 p {
@@ -83,19 +71,21 @@ p {
 }
 
 a {
-    color: var(--link-color);
+    color: var(--sky-blue);
     text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color 0.2s ease;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
 }
 
 a:hover {
-    color: var(--link-hover);
+    color: var(--forest-green);
+    text-decoration-style: solid;
 }
 
 strong {
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--soft-brown);
 }
 
 em {
@@ -104,18 +94,20 @@ em {
 
 hr {
     border: none;
-    border-top: 1px solid var(--card-border);
+    border-top: 1px dashed var(--sunset-pink);
     margin: 1rem 0;
 }
 
-/* Navigation */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   navigation bar
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: var(--card-bg);
-    border-bottom: 3px solid var(--nav-border);
+    background-color: var(--warm-white);
+    border-bottom: 3px solid var(--meadow);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -123,13 +115,14 @@ hr {
 
 .site-title {
     font-family: 'VT323', monospace;
-    font-size: 1.25rem;
-    color: var(--main-bold);
+    font-size: 1.4rem;
+    color: var(--forest-green);
     text-decoration: none;
+    letter-spacing: 1px;
 }
 
 .site-title:hover {
-    color: var(--link-hover);
+    color: var(--sky-blue);
 }
 
 .nav-links {
@@ -141,19 +134,21 @@ hr {
 .nav-links a {
     font-family: 'VT323', monospace;
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--soft-brown);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: var(--main-bold);
+    color: var(--forest-green);
 }
 
-/* Page Container */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   page container stuff
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .page {
     display: none;
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn 0.4s ease;
 }
 
 .page.active {
@@ -161,8 +156,14 @@ hr {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(15px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
 .container {
@@ -171,45 +172,49 @@ hr {
     padding: 2rem;
 }
 
-/* Cards */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cards - the main content boxes
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
-    padding: 1.25rem;
+    background-color: var(--warm-white);
+    border: 2px solid var(--cloud);
+    border-radius: 12px;
+    padding: 1.5rem;
     margin-bottom: 1.25rem;
     box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        0 4px 12px rgba(90, 114, 71, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
 }
 
 .nav-card {
     display: block;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .nav-card:hover {
-    background-color: var(--complementary);
-    border-color: var(--main-bold);
-    transform: translateY(-2px);
+    background-color: var(--cream);
+    border-color: var(--meadow);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 20px rgba(90, 114, 71, 0.12),
+        0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .nav-card h2 {
-    color: var(--text-primary);
     margin-bottom: 0.25rem;
-    text-decoration: underline;
-    text-underline-offset: 3px;
 }
 
 .nav-card p {
-    color: var(--text-secondary);
+    color: var(--text-light);
     margin-bottom: 0;
     font-size: 0.9rem;
 }
 
-/* Landing Page Section */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   landing page / home section
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .landing_page-card {
     text-align: left;
 }
@@ -218,8 +223,9 @@ hr {
     width: 100%;
     margin: 1rem 0;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 12px;
     height: 300px;
+    border: 3px solid var(--cloud);
 }
 
 .landing_page-image img {
@@ -229,17 +235,43 @@ hr {
     display: block;
 }
 
-.dithered-effect {
-    filter: grayscale(100%) contrast(1.1);
-}
-
 .intro-text {
     font-size: 1rem;
-    color: var(--text-primary);
-    line-height: 1.7;
+    color: var(--text-dark);
+    line-height: 1.8;
 }
 
-/* Layout Columns */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   hero images for other pages
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.hero-card {
+    text-align: left;
+}
+
+.hero-image {
+    width: 100%;
+    margin: 1rem 0;
+    overflow: hidden;
+    border-radius: 12px;
+    height: 250px;
+    border: 3px solid var(--cloud);
+}
+
+.hero-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+/* makes images look a bit more dreamy/ghibli-esque */
+.dithered-effect {
+    filter: saturate(1.1) contrast(0.95);
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   layout columns
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .two-column {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -258,21 +290,21 @@ hr {
     margin-bottom: 0;
 }
 
-/* Currently Section */
-.currently p {
-    margin-bottom: 0.5rem;
-}
-
-/* Find Me Section */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   currently & find me sections
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.currently p,
 .find-me p {
     margin-bottom: 0.5rem;
 }
 
-/* Updates Section */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   updates section
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .update-item {
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--card-border);
+    border-bottom: 1px dashed var(--sunset-pink);
 }
 
 .update-item:last-child {
@@ -284,32 +316,21 @@ hr {
 .update-item h4 {
     font-size: 1rem;
     margin-bottom: 0.25rem;
-    color: var(--dark-neutral);
+    color: var(--soft-brown);
 }
 
 .update-item p {
     margin-bottom: 0;
 }
 
-/* Guestbook placeholder */
-.cbox-placeholder {
-    background-color: var(--bg-secondary);
-    border-radius: 4px;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-
-.cbox-placeholder p {
-    margin-bottom: 0.25rem;
-}
-
-/* About Page */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   about page
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .about-image {
     width: 100%;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 8px;
+    border: 2px solid var(--cloud);
 }
 
 .about-image img {
@@ -318,7 +339,9 @@ hr {
     display: block;
 }
 
-/* Back Link */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   back links
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .back-link {
     display: inline-block;
     padding: 1rem 1.25rem;
@@ -327,14 +350,16 @@ hr {
 .back-link span {
     font-family: 'VT323', monospace;
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--soft-brown);
 }
 
 .back-link:hover span {
-    color: var(--main-bold);
+    color: var(--forest-green);
 }
 
-/* Filter Tags */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   filter tags (for library & cinema)
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .filter-tags {
     display: flex;
     flex-wrap: wrap;
@@ -345,27 +370,29 @@ hr {
 .tag {
     font-family: 'VT323', monospace;
     font-size: 0.95rem;
-    background-color: transparent;
-    border: 1px solid var(--card-border);
-    border-radius: 2px;
-    padding: 0.35rem 0.75rem;
-    color: var(--text-secondary);
+    background-color: var(--cream);
+    border: 1px solid var(--cloud);
+    border-radius: 20px;
+    padding: 0.4rem 0.9rem;
+    color: var(--text-light);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .tag:hover {
-    border-color: var(--main-bold);
-    color: var(--main-bold);
+    border-color: var(--sky-blue);
+    color: var(--sky-blue);
 }
 
 .tag.active {
-    background-color: var(--complementary);
-    border-color: var(--main-bold);
-    color: var(--text-primary);
+    background-color: var(--meadow);
+    border-color: var(--meadow);
+    color: white;
 }
 
-/* Gallery */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   gallery grids
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -376,13 +403,16 @@ hr {
 .gallery-item {
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: all 0.3s ease;
+    border: 2px solid var(--cloud);
 }
 
 .gallery-item:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
+    border-color: var(--meadow);
+    box-shadow: 0 6px 16px rgba(90, 114, 71, 0.15);
 }
 
 .gallery-item img {
@@ -391,6 +421,7 @@ hr {
     object-fit: cover;
 }
 
+/* book & film galleries have taller aspect ratios */
 .book-gallery .gallery-item,
 .film-gallery .gallery-item {
     aspect-ratio: 2 / 3;
@@ -401,30 +432,40 @@ hr {
     aspect-ratio: 1 / 1;
 }
 
-/* Year Section */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   year sections (for darkroom)
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .year-section {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, var(--meadow) 0%, transparent 100%);
+    border-radius: 8px 0 0 8px;
 }
 
 .year-section h2 {
     margin-bottom: 0;
+    color: white;
 }
 
-/* Video Container */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   video container (jukebox)
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .video-container {
     padding: 0;
     overflow: hidden;
+    border-radius: 12px;
 }
 
 .video-container iframe {
     display: block;
     width: 100%;
     height: 400px;
-    border-radius: 4px;
+    border-radius: 12px;
 }
 
-/* Blog List */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   blog list
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .blog-list {
     padding: 0;
 }
@@ -435,8 +476,8 @@ hr {
     align-items: center;
     padding: 1rem 1.25rem;
     text-decoration: none;
-    border-bottom: 1px solid var(--card-border);
-    transition: background-color 0.2s ease;
+    border-bottom: 1px dashed var(--cloud);
+    transition: all 0.2s ease;
 }
 
 .blog-entry:last-child {
@@ -444,22 +485,25 @@ hr {
 }
 
 .blog-entry:hover {
-    background-color: var(--complementary);
+    background-color: var(--cream);
+    padding-left: 1.5rem;
 }
 
 .blog-title {
     font-family: 'VT323', monospace;
-    font-size: 1.15rem;
-    color: var(--text-primary);
+    font-size: 1.2rem;
+    color: var(--forest-green);
 }
 
 .blog-date {
     font-family: 'VT323', monospace;
     font-size: 1rem;
-    color: var(--dark-neutral);
+    color: var(--soft-brown);
 }
 
-/* Blog Article */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   individual blog posts
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .blog-container {
     max-width: 700px;
 }
@@ -473,13 +517,13 @@ hr {
 }
 
 .blog-post-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
 .blog-subtitle {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: var(--text-light);
     font-style: italic;
     margin-bottom: 1rem;
 }
@@ -488,7 +532,8 @@ hr {
     width: 100%;
     margin: 1rem 0;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 8px;
+    border: 2px solid var(--cloud);
 }
 
 .blog-hero-image img {
@@ -501,10 +546,10 @@ hr {
     display: block;
     font-family: 'VT323', monospace;
     font-size: 1rem;
-    color: var(--dark-neutral);
+    color: var(--soft-brown);
     text-align: center;
     padding-top: 1rem;
-    border-top: 1px solid var(--card-border);
+    border-top: 1px dashed var(--sunset-pink);
 }
 
 .blog-content {
@@ -513,10 +558,11 @@ hr {
 
 .blog-content p {
     margin-bottom: 1.25rem;
-    text-align: justify;
 }
 
-/* Checkout Counter Styles */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   checkout counter styles
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .checkout-container {
     max-width: 750px;
 }
@@ -528,7 +574,8 @@ hr {
 
 .checkout-header {
     padding: 1.25rem;
-    background-color: var(--complementary);
+    background: linear-gradient(135deg, var(--meadow) 0%, var(--sky-blue) 100%);
+    color: white;
 }
 
 .checkout-title-row {
@@ -540,18 +587,19 @@ hr {
 .checkout-title-row h1 {
     font-size: 1.5rem;
     margin-bottom: 0;
+    color: white;
 }
 
 .checkout-date {
     font-family: 'VT323', monospace;
     font-size: 1rem;
-    color: var(--dark-neutral);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .checkout-intro {
     padding: 1.25rem;
-    background-color: var(--card-bg);
-    border-bottom: 1px solid var(--card-border);
+    background-color: var(--warm-white);
+    border-bottom: 1px solid var(--cloud);
 }
 
 .checkout-intro p:last-child {
@@ -565,8 +613,9 @@ hr {
 .checkout-section {
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background-color: var(--bg-secondary);
-    border-radius: 4px;
+    background-color: var(--cream);
+    border-radius: 8px;
+    border-left: 3px solid var(--meadow);
 }
 
 .checkout-section:last-child {
@@ -577,7 +626,7 @@ hr {
     font-size: 1.2rem;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--card-border);
+    border-bottom: 1px dashed var(--cloud);
 }
 
 .rec-item {
@@ -594,7 +643,7 @@ hr {
 
 .rec-meta {
     font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: var(--text-light);
     padding-left: 1.5rem;
 }
 
@@ -602,17 +651,19 @@ hr {
     display: flex;
     justify-content: space-between;
     padding: 1rem 1.25rem;
-    background-color: var(--complementary);
-    border-top: 1px solid var(--card-border);
+    background-color: var(--cream);
+    border-top: 1px solid var(--cloud);
 }
 
 .checkout-nav-link {
     font-family: 'VT323', monospace;
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: var(--soft-brown);
 }
 
-/* Lightbox */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   lightbox (for viewing images fullscreen)
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .lightbox {
     display: none;
     position: fixed;
@@ -620,7 +671,7 @@ hr {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(74, 74, 74, 0.95);
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -652,9 +703,12 @@ hr {
     max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
+    border-radius: 8px;
 }
 
-/* Responsive Design */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   responsive design - mobile friendly!
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 @media (max-width: 768px) {
     .main-nav {
         padding: 1rem;
@@ -682,6 +736,16 @@ hr {
         align-items: flex-start;
         gap: 0.5rem;
     }
+    
+    .landing_page-image,
+    .hero-image {
+        height: 200px;
+    }
+    
+    .landing_page-image img,
+    .hero-image img {
+        height: 200px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -692,29 +756,37 @@ hr {
     .gallery {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .page-title {
+        font-size: 1.6rem;
+    }
 }
 
-/* Selection */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   little extras ~
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* text selection color - that soft pink! */
 ::selection {
-    background-color: var(--main-bold);
-    color: var(--light-neutral);
+    background-color: var(--sunset-pink);
+    color: white;
 }
 
-/* Scrollbar */
+/* custom scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
+    background: var(--cream);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--dark-neutral);
-    border-radius: 4px;
+    background: var(--meadow);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--main-bold);
+    background: var(--forest-green);
 }
