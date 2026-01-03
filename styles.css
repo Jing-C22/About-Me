@@ -209,19 +209,19 @@ hr {
     font-size: 0.9rem;
 }
 
-/* Hero Section */
-.hero-card {
+/* Landing Page Section */
+.landing_page-card {
     text-align: left;
 }
 
-.hero-image {
+.landing_page-image {
     width: 100%;
     margin: 1rem 0;
     overflow: hidden;
     border-radius: 2px;
 }
 
-.hero-image img {
+.landing_page-image img {
     width: 100%;
     height: auto;
     display: block;
