@@ -1,7 +1,7 @@
 /* 
-    cosmosteria styles
-    inspired by studio ghibli films ~
-    totoro's forest greens, howl's sky blues, chihiro's warm sunset pinks
+    heheheehehehehehehehehehehe
+    no one's gonna read this anywayyyy
+    lowkey my head do be hurting ngl tho 
 */
 
 :root {
@@ -33,7 +33,7 @@ html {
 body {
     font-family: 'Lora', Georgia, serif;
     background-color: var(--cream);
-    /* subtle dreamy gradient - like a ghibli sky */
+    /* subtle dreamy gradient cuz why not */
     background-image: 
         radial-gradient(ellipse at top, rgba(168, 198, 134, 0.1) 0%, transparent 50%),
         radial-gradient(ellipse at bottom, rgba(232, 180, 184, 0.1) 0%, transparent 50%);
@@ -42,7 +42,7 @@ body {
     min-height: 100vh;
 }
 
-/* fonts - VT323 for headers gives it that handwritten feel */
+/* fonts - handwritten feel */
 h1, h2, h3, h4 {
     font-family: 'VT323', monospace;
     font-weight: 400;
@@ -264,7 +264,7 @@ hr {
     display: block;
 }
 
-/* makes images look a bit more dreamy/ghibli-esque */
+/* heheehehehe */
 .dithered-effect {
     filter: saturate(1.1) contrast(0.95);
 }
