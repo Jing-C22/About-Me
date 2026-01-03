@@ -16,242 +16,91 @@
         <div class="nav-links">
             <a href="#" data-page="living-room">living room</a>
             <a href="#" data-page="studio">studio</a>
-            <button class="admin-toggle" id="adminToggle" title="Admin">✦</button>
         </div>
     </nav>
 
-    <!-- Admin Login Modal -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal">
-            <button class="modal-close" id="closeLogin">&times;</button>
-            <h2>Admin Access</h2>
-            <form id="loginForm">
-                <input type="password" id="adminPassword" placeholder="Enter password" autocomplete="current-password">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
-            <p class="error-msg" id="loginError"></p>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">
-            <h3>✦ Admin Panel</h3>
-            <button class="btn btn-small" id="logoutBtn">Logout</button>
-        </div>
-        <div class="admin-buttons">
-            <button class="btn btn-admin" data-type="blog">+ New Blog Post</button>
-            <button class="btn btn-admin" data-type="photo">+ New Photo</button>
-            <button class="btn btn-admin" data-type="drawing">+ New Drawing</button>
-            <button class="btn btn-admin" data-type="book">+ New Book</button>
-            <button class="btn btn-admin" data-type="film">+ New Film</button>
-            <button class="btn btn-admin" data-type="checkout">+ New Checkout</button>
-        </div>
-    </div>
-
-    <!-- Add Content Modal -->
-    <div class="modal-overlay" id="addContentModal">
-        <div class="modal modal-large">
-            <button class="modal-close" id="closeAddContent">&times;</button>
-            <h2 id="addContentTitle">Add New Content</h2>
-            
-            <!-- Blog Form -->
-            <form id="blogForm" class="content-form">
-                <div class="form-group">
-                    <label for="blogTitle">Title</label>
-                    <input type="text" id="blogTitle" required>
-                </div>
-                <div class="form-group">
-                    <label for="blogSubtitle">Subtitle (optional)</label>
-                    <input type="text" id="blogSubtitle">
-                </div>
-                <div class="form-group">
-                    <label for="blogDate">Date</label>
-                    <input type="date" id="blogDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="blogImage">Cover Image URL (optional)</label>
-                    <input type="url" id="blogImage" placeholder="https://example.com/image.jpg">
-                </div>
-                <div class="form-group">
-                    <label for="blogContent">Content</label>
-                    <textarea id="blogContent" rows="10" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Publish Post</button>
-            </form>
-
-            <!-- Photo Form -->
-            <form id="photoForm" class="content-form">
-                <div class="form-group">
-                    <label for="photoTitle">Title</label>
-                    <input type="text" id="photoTitle" required>
-                </div>
-                <div class="form-group">
-                    <label for="photoDate">Date</label>
-                    <input type="date" id="photoDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="photoYear">Year Category</label>
-                    <input type="text" id="photoYear" placeholder="2026" required>
-                </div>
-                <div class="form-group">
-                    <label for="photoUrl">Image URL</label>
-                    <input type="url" id="photoUrl" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Add Photo</button>
-            </form>
-
-            <!-- Drawing Form -->
-            <form id="drawingForm" class="content-form">
-                <div class="form-group">
-                    <label for="drawingTitle">Title</label>
-                    <input type="text" id="drawingTitle" required>
-                </div>
-                <div class="form-group">
-                    <label for="drawingDate">Date</label>
-                    <input type="date" id="drawingDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="drawingUrl">Image URL</label>
-                    <input type="url" id="drawingUrl" required>
-                </div>
-                <div class="form-group">
-                    <label for="drawingDesc">Description (optional)</label>
-                    <input type="text" id="drawingDesc">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Drawing</button>
-            </form>
-
-            <!-- Book Form -->
-            <form id="bookForm" class="content-form">
-                <div class="form-group">
-                    <label for="bookTitle">Title</label>
-                    <input type="text" id="bookTitle" required>
-                </div>
-                <div class="form-group">
-                    <label for="bookAuthor">Author</label>
-                    <input type="text" id="bookAuthor" required>
-                </div>
-                <div class="form-group">
-                    <label for="bookCover">Cover Image URL</label>
-                    <input type="url" id="bookCover" required>
-                </div>
-                <div class="form-group">
-                    <label for="bookGenre">Genre</label>
-                    <input type="text" id="bookGenre" placeholder="fiction, fantasy, etc.">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Book</button>
-            </form>
-
-            <!-- Film Form -->
-            <form id="filmForm" class="content-form">
-                <div class="form-group">
-                    <label for="filmTitle">Title</label>
-                    <input type="text" id="filmTitle" required>
-                </div>
-                <div class="form-group">
-                    <label for="filmYear">Year</label>
-                    <input type="text" id="filmYear" required>
-                </div>
-                <div class="form-group">
-                    <label for="filmPoster">Poster Image URL</label>
-                    <input type="url" id="filmPoster" required>
-                </div>
-                <div class="form-group">
-                    <label for="filmGenre">Genre</label>
-                    <input type="text" id="filmGenre" placeholder="drama, comedy, etc.">
-                </div>
-                <button type="submit" class="btn btn-primary">Add Film</button>
-            </form>
-
-            <!-- Checkout Form -->
-            <form id="checkoutForm" class="content-form">
-                <div class="form-group">
-                    <label for="checkoutNumber">Issue Number</label>
-                    <input type="number" id="checkoutNumber" required>
-                </div>
-                <div class="form-group">
-                    <label for="checkoutMonth">Month/Year</label>
-                    <input type="text" id="checkoutMonth" placeholder="January 2026" required>
-                </div>
-                <div class="form-group">
-                    <label for="checkoutIntro">Intro Text</label>
-                    <textarea id="checkoutIntro" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="checkoutFilms">Films (one per line: Title, Year, Genre, Description)</label>
-                    <textarea id="checkoutFilms" rows="4" placeholder="Film Title, 2024, Drama, Description here"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="checkoutBooks">Books (one per line: Title, Author, Genre, Description)</label>
-                    <textarea id="checkoutBooks" rows="4" placeholder="Book Title, Author Name, Fiction, Description here"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="checkoutLinks">Links (one per line: Title, URL, Description)</label>
-                    <textarea id="checkoutLinks" rows="4" placeholder="Link Title, https://example.com, Description here"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Publish Checkout</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Home Page -->
+    <!-- ====================================================
+         HOME PAGE
+         ==================================================== -->
     <main id="home" class="page active">
         <div class="container">
             <section class="hero-card">
                 <h1 class="page-title">Cosmosteria</h1>
                 <div class="hero-image">
-                    <div class="placeholder-image">Your hero image here</div>
+                    <!-- EDIT: Replace with your hero image -->
+                    <img src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=800&q=80" alt="Hero image" class="dithered-effect">
                 </div>
+                <!-- EDIT: Your intro text -->
                 <p class="intro-text">hi! this is my personal site where you can find my art, read whatever i've been writing, and peruse some interesting images and links. always a work in progress.</p>
             </section>
 
             <div class="two-column">
                 <section class="card currently">
                     <h2>Currently</h2>
-                    <p><strong>it's</strong> </p>
-                    <p><strong>listening to</strong> </p>
-                    <p><strong>reading</strong> </p>
-                    <p><strong>last updated</strong> </p>
+                    <!-- EDIT: Update these whenever you want -->
+                    <p><strong>it's</strong> a quiet evening</p>
+                    <p><strong>listening to</strong> rain on the window</p>
+                    <p><strong>reading</strong> your book here</p>
+                    <p><strong>last updated</strong> january 3, 2026</p>
                 </section>
 
                 <section class="card find-me">
                     <h2>Find me elsewhere</h2>
-                    <p><strong>platform</strong> <a href="#">username</a></p>
-                    <p><strong>platform</strong> <a href="#">username</a></p>
-                    <p><strong>platform</strong> <a href="#">username</a></p>
+                    <!-- EDIT: Add your social links -->
+                    <p><strong>neocities</strong> <a href="#">yourname</a></p>
+                    <p><strong>bluesky</strong> <a href="#">yourname</a></p>
+                    <p><strong>tumblr</strong> <a href="#">yourname</a></p>
                 </section>
             </div>
 
             <div class="two-column">
                 <section class="card updates">
                     <h2>Updates</h2>
-                    <div id="homeUpdates">
-                        <p class="empty-note">No updates yet.</p>
+                    <!-- ==========================================
+                         HOW TO ADD UPDATES:
+                         Copy this block and paste at the top:
+                         
+                         <div class="update-item">
+                             <h4>Jan 03 2026</h4>
+                             <p>new post: <a href="#" data-page="blog-post" data-post="your-post-id">Post Title</a></p>
+                         </div>
+                         ========================================== -->
+                    <div class="update-item">
+                        <h4>Jan 03 2026</h4>
+                        <p>site launched!</p>
                     </div>
                 </section>
 
                 <section class="card guestbook">
                     <h2>Guestbook</h2>
-                    <div class="guestbook-entries" id="guestbookEntries">
-                        <!-- Entries will be loaded here -->
+                    <!-- EDIT: Replace with Cbox embed code from cbox.ws -->
+                    <!-- Sign up at https://www.cbox.ws for a free guestbook widget -->
+                    <div class="cbox-placeholder">
+                        <p>To add a guestbook:</p>
+                        <p>1. Go to <a href="https://www.cbox.ws" target="_blank">cbox.ws</a></p>
+                        <p>2. Sign up for free</p>
+                        <p>3. Get your embed code</p>
+                        <p>4. Replace this div with the embed code</p>
                     </div>
-                    <div class="guestbook-form">
-                        <input type="text" placeholder="name" class="gb-name" id="gbName">
-                        <input type="text" placeholder="message" class="gb-message" id="gbMessage">
-                    </div>
+                    <!-- Example Cbox embed (replace with yours):
+                    <iframe src="https://www5.cbox.ws/box/?boxid=YOURBOXID&boession=YOURSESSION" 
+                            width="100%" height="300" frameborder="0" scrolling="auto"></iframe>
+                    -->
                 </section>
             </div>
         </div>
     </main>
 
-    <!-- Living Room Page -->
+    <!-- ====================================================
+         LIVING ROOM PAGE
+         ==================================================== -->
     <main id="living-room" class="page">
         <div class="container">
             <section class="hero-card">
                 <h1 class="page-title">Living Room</h1>
                 <div class="hero-image">
-                    <div class="placeholder-image">Your image here</div>
+                    <!-- EDIT: Replace with your image -->
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Living room" class="dithered-effect">
                 </div>
             </section>
 
@@ -274,13 +123,16 @@
         </div>
     </main>
 
-    <!-- Studio Page -->
+    <!-- ====================================================
+         STUDIO PAGE
+         ==================================================== -->
     <main id="studio" class="page">
         <div class="container">
             <section class="hero-card">
                 <h1 class="page-title">Studio</h1>
                 <div class="hero-image">
-                    <div class="placeholder-image">Your image here</div>
+                    <!-- EDIT: Replace with your image -->
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80" alt="Studio" class="dithered-effect">
                 </div>
             </section>
 
@@ -307,28 +159,33 @@
         </div>
     </main>
 
-    <!-- About Page -->
+    <!-- ====================================================
+         ABOUT PAGE
+         ==================================================== -->
     <main id="about" class="page">
         <div class="container">
             <section class="card">
                 <h1 class="page-title">About</h1>
-                <p class="intro-text">Your about text here.</p>
+                <!-- EDIT: Your about text -->
+                <p class="intro-text">i'm [your name] and i do [your work], and i like to do a lot of other things for fun.</p>
             </section>
 
             <div class="two-column">
                 <section class="card">
                     <h2>What's your favorite...?</h2>
-                    <p>☞ <strong>ice cream flavor?</strong> </p>
-                    <p>☞ <strong>herb?</strong> </p>
-                    <p>☞ <strong>kitchen appliance?</strong> </p>
-                    <p>☞ <strong>bird call?</strong> </p>
-                    <p>☞ <strong>labyrinth?</strong> </p>
+                    <!-- EDIT: Your favorites -->
+                    <p>☞ <strong>ice cream flavor?</strong> vanilla</p>
+                    <p>☞ <strong>herb?</strong> basil</p>
+                    <p>☞ <strong>kitchen appliance?</strong> my kettle</p>
+                    <p>☞ <strong>bird call?</strong> <a href="#">robin</a></p>
+                    <p>☞ <strong>place?</strong> the library</p>
                 </section>
 
                 <section class="card">
                     <h2>"What's a Cosmosteria?"</h2>
                     <div class="about-image">
-                        <div class="placeholder-image">Your image here</div>
+                        <!-- EDIT: Replace with your image -->
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80" alt="Cosmos" class="dithered-effect">
                     </div>
                 </section>
             </div>
@@ -339,7 +196,9 @@
         </div>
     </main>
 
-    <!-- Jukebox Page -->
+    <!-- ====================================================
+         JUKEBOX PAGE
+         ==================================================== -->
     <main id="jukebox" class="page">
         <div class="container">
             <section class="card">
@@ -348,7 +207,15 @@
             </section>
 
             <section class="card video-container">
-                <div class="placeholder-image" style="height: 400px;">Your YouTube embed here<br><br>Replace this div with:<br>&lt;iframe src="https://youtube.com/embed/VIDEO_ID"&gt;&lt;/iframe&gt;</div>
+                <!-- EDIT: Replace VIDEO_ID with your YouTube video ID -->
+                <!-- To get video ID: from https://youtube.com/watch?v=VIDEO_ID -->
+                <iframe 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    title="YouTube video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
             </section>
 
             <a href="#" class="card nav-card back-link" data-page="living-room">
@@ -357,7 +224,9 @@
         </div>
     </main>
 
-    <!-- Library Page -->
+    <!-- ====================================================
+         LIBRARY PAGE (Books)
+         ==================================================== -->
     <main id="library" class="page">
         <div class="container">
             <section class="card">
@@ -371,16 +240,34 @@
                     <button class="tag" data-filter="nonfiction">nonfiction</button>
                     <button class="tag" data-filter="fantasy">fantasy</button>
                     <button class="tag" data-filter="horror">horror</button>
-                    <button class="tag" data-filter="mystery">mystery</button>
-                    <button class="tag" data-filter="romance">romance</button>
-                    <button class="tag" data-filter="science fiction">sci-fi</button>
+                    <button class="tag" data-filter="scifi">sci-fi</button>
                 </div>
             </section>
 
-            <div class="gallery book-gallery" id="bookGallery">
-                <!-- Books loaded dynamically -->
+            <div class="gallery book-gallery">
+                <!-- ==========================================
+                     HOW TO ADD BOOKS:
+                     Copy this block and paste below:
+                     
+                     <div class="gallery-item" data-filter="genre-here">
+                         <img src="COVER_IMAGE_URL" alt="Book Title">
+                     </div>
+                     
+                     For data-filter, use: fiction, nonfiction, fantasy, horror, scifi
+                     ========================================== -->
+                <div class="gallery-item" data-filter="fiction">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1517963084i/34897895.jpg" alt="Piranesi">
+                </div>
+                <div class="gallery-item" data-filter="fiction">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1514285040i/36348525.jpg" alt="Severance">
+                </div>
+                <div class="gallery-item" data-filter="fiction">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1464899547i/28510840.jpg" alt="Convenience Store Woman">
+                </div>
+                <div class="gallery-item" data-filter="fantasy">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1612791626i/56197346.jpg" alt="Matrix">
+                </div>
             </div>
-            <p class="empty-note" id="bookEmpty">No books yet. Add some from the admin panel!</p>
 
             <a href="#" class="card nav-card back-link" data-page="living-room">
                 <span>← Living room</span>
@@ -388,7 +275,9 @@
         </div>
     </main>
 
-    <!-- Cinema Page -->
+    <!-- ====================================================
+         CINEMA PAGE (Films)
+         ==================================================== -->
     <main id="cinema" class="page">
         <div class="container">
             <section class="card">
@@ -398,20 +287,38 @@
                 
                 <div class="filter-tags">
                     <button class="tag active" data-filter="all">all</button>
-                    <button class="tag" data-filter="action">action</button>
-                    <button class="tag" data-filter="animation">animation</button>
-                    <button class="tag" data-filter="comedy">comedy</button>
                     <button class="tag" data-filter="drama">drama</button>
-                    <button class="tag" data-filter="fantasy">fantasy</button>
+                    <button class="tag" data-filter="comedy">comedy</button>
                     <button class="tag" data-filter="horror">horror</button>
+                    <button class="tag" data-filter="animation">animation</button>
                     <button class="tag" data-filter="thriller">thriller</button>
                 </div>
             </section>
 
-            <div class="gallery film-gallery" id="filmGallery">
-                <!-- Films loaded dynamically -->
+            <div class="gallery film-gallery">
+                <!-- ==========================================
+                     HOW TO ADD FILMS:
+                     Copy this block and paste below:
+                     
+                     <div class="gallery-item" data-filter="genre-here">
+                         <img src="POSTER_IMAGE_URL" alt="Film Title">
+                     </div>
+                     
+                     For data-filter, use: drama, comedy, horror, animation, thriller
+                     ========================================== -->
+                <div class="gallery-item" data-filter="drama">
+                    <img src="https://image.tmdb.org/t/p/w500/kQs6keheMwCxJxrzV83VUwFtHkB.jpg" alt="Anatomy of a Fall">
+                </div>
+                <div class="gallery-item" data-filter="horror">
+                    <img src="https://image.tmdb.org/t/p/w500/AcKVlWaNVVVFQwro3nLXqPljcYA.jpg" alt="Nope">
+                </div>
+                <div class="gallery-item" data-filter="animation">
+                    <img src="https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg" alt="Parasite">
+                </div>
+                <div class="gallery-item" data-filter="drama">
+                    <img src="https://image.tmdb.org/t/p/w500/2IjJqgOjAbIlxf7lNXXP6pKUdsw.jpg" alt="Portrait of a Lady on Fire">
+                </div>
             </div>
-            <p class="empty-note" id="filmEmpty">No films yet. Add some from the admin panel!</p>
 
             <a href="#" class="card nav-card back-link" data-page="living-room">
                 <span>← Living room</span>
@@ -419,7 +326,9 @@
         </div>
     </main>
 
-    <!-- Writings Page -->
+    <!-- ====================================================
+         WRITINGS PAGE (Blog List)
+         ==================================================== -->
     <main id="writings" class="page">
         <div class="container">
             <section class="card">
@@ -427,10 +336,28 @@
                 <p>you can subscribe via <a href="#">RSS</a>, if you'd like.</p>
             </section>
 
-            <section class="card blog-list" id="blogList">
-                <!-- Blog entries loaded dynamically -->
+            <section class="card blog-list">
+                <!-- ==========================================
+                     HOW TO ADD BLOG POSTS:
+                     1. First, add a new blog-post section below (scroll down to BLOG POSTS SECTION)
+                     2. Then add a link here. Copy this block:
+                     
+                     <a href="#" class="blog-entry" data-page="blog-post" data-post="your-post-id">
+                         <span class="blog-title">Your Post Title</span>
+                         <span class="blog-date">January 03 2026</span>
+                     </a>
+                     
+                     Make sure data-post matches the id of your blog post section!
+                     ========================================== -->
+                <a href="#" class="blog-entry" data-page="blog-post" data-post="first-post">
+                    <span class="blog-title">My First Post</span>
+                    <span class="blog-date">January 03 2026</span>
+                </a>
+                <a href="#" class="blog-entry" data-page="blog-post" data-post="hello-world">
+                    <span class="blog-title">Hello World</span>
+                    <span class="blog-date">January 01 2026</span>
+                </a>
             </section>
-            <p class="empty-note" id="blogEmpty">No blog posts yet. Add some from the admin panel!</p>
 
             <a href="#" class="card nav-card back-link" data-page="studio">
                 <span>← Studio</span>
@@ -438,11 +365,33 @@
         </div>
     </main>
 
-    <!-- Individual Blog Post Page -->
-    <main id="blog-post" class="page">
+    <!-- ====================================================
+         BLOG POSTS SECTION
+         Add your individual blog posts here
+         ==================================================== -->
+    
+    <!-- BLOG POST: first-post -->
+    <main id="blog-post-first-post" class="page blog-post-page">
         <div class="container blog-container">
-            <article class="card blog-article" id="blogPostContent">
-                <!-- Blog post loaded dynamically -->
+            <article class="card blog-article">
+                <header class="blog-header">
+                    <h1 class="blog-post-title">My First Post</h1>
+                    <p class="blog-subtitle">A subtitle for this post</p>
+                    <!-- Optional: Add a hero image -->
+                    <div class="blog-hero-image">
+                        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80" alt="Post image" class="dithered-effect">
+                    </div>
+                    <time class="blog-date-full">January 3, 2026</time>
+                </header>
+
+                <div class="blog-content">
+                    <!-- EDIT: Your blog content - each <p> is a paragraph -->
+                    <p>This is my first blog post! Write your content here.</p>
+                    <p>You can add as many paragraphs as you want. Just wrap each one in &lt;p&gt; tags.</p>
+                    <p>To add a link, use: &lt;a href="URL"&gt;link text&lt;/a&gt;</p>
+                    <p>To make text italic, use: &lt;em&gt;italic text&lt;/em&gt;</p>
+                    <p>To make text bold, use: &lt;strong&gt;bold text&lt;/strong&gt;</p>
+                </div>
             </article>
             <a href="#" class="card nav-card back-link" data-page="writings">
                 <span>← Back to Writings</span>
@@ -450,7 +399,56 @@
         </div>
     </main>
 
-    <!-- Art Studio Page -->
+    <!-- BLOG POST: hello-world -->
+    <main id="blog-post-hello-world" class="page blog-post-page">
+        <div class="container blog-container">
+            <article class="card blog-article">
+                <header class="blog-header">
+                    <h1 class="blog-post-title">Hello World</h1>
+                    <time class="blog-date-full">January 1, 2026</time>
+                </header>
+
+                <div class="blog-content">
+                    <p>Hello! Welcome to my corner of the internet.</p>
+                    <p>This is a sample post to show you how blog posts work.</p>
+                </div>
+            </article>
+            <a href="#" class="card nav-card back-link" data-page="writings">
+                <span>← Back to Writings</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- ==========================================
+         HOW TO ADD A NEW BLOG POST:
+         
+         1. Copy this template:
+         
+         <main id="blog-post-YOUR-POST-ID" class="page blog-post-page">
+             <div class="container blog-container">
+                 <article class="card blog-article">
+                     <header class="blog-header">
+                         <h1 class="blog-post-title">Your Title Here</h1>
+                         <p class="blog-subtitle">Optional subtitle</p>
+                         <time class="blog-date-full">January 1, 2026</time>
+                     </header>
+                     <div class="blog-content">
+                         <p>Your content here...</p>
+                     </div>
+                 </article>
+                 <a href="#" class="card nav-card back-link" data-page="writings">
+                     <span>← Back to Writings</span>
+                 </a>
+             </div>
+         </main>
+         
+         2. Replace YOUR-POST-ID with a simple id (no spaces, use dashes)
+         3. Add a link in the writings page blog-list section
+         ========================================== -->
+
+    <!-- ====================================================
+         ART STUDIO PAGE (Drawings)
+         ==================================================== -->
     <main id="art-studio" class="page">
         <div class="container">
             <section class="card">
@@ -459,10 +457,30 @@
                 <p>a more comprehensive collection of my art can be found on <a href="#">tumblr</a>.</p>
             </section>
 
-            <div class="gallery art-gallery" id="artGallery">
-                <!-- Art loaded dynamically -->
+            <div class="gallery art-gallery">
+                <!-- ==========================================
+                     HOW TO ADD DRAWINGS:
+                     Copy this block and paste below:
+                     
+                     <div class="gallery-item" data-full="FULL_SIZE_IMAGE_URL">
+                         <img src="THUMBNAIL_URL" alt="Drawing title">
+                     </div>
+                     
+                     data-full is the URL that opens in lightbox when clicked
+                     ========================================== -->
+                <div class="gallery-item" data-full="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80" alt="Art piece 1">
+                </div>
+                <div class="gallery-item" data-full="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=400&q=80" alt="Art piece 2">
+                </div>
+                <div class="gallery-item" data-full="https://images.unsplash.com/photo-1549490349-8643362247b5?w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=400&q=80" alt="Art piece 3">
+                </div>
+                <div class="gallery-item" data-full="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=400&q=80" alt="Art piece 4">
+                </div>
             </div>
-            <p class="empty-note" id="artEmpty">No drawings yet. Add some from the admin panel!</p>
 
             <a href="#" class="card nav-card back-link" data-page="studio">
                 <span>← Studio</span>
@@ -470,7 +488,9 @@
         </div>
     </main>
 
-    <!-- Darkroom Page -->
+    <!-- ====================================================
+         DARKROOM PAGE (Photography)
+         ==================================================== -->
     <main id="darkroom" class="page">
         <div class="container">
             <section class="card">
@@ -478,10 +498,36 @@
                 <p>some of my photos. click to view the full size image.</p>
             </section>
 
-            <div id="photoGalleryContainer">
-                <!-- Photos loaded dynamically by year -->
+            <!-- YEAR: 2026 -->
+            <section class="card year-section">
+                <h2>2026</h2>
+            </section>
+            <div class="gallery photo-gallery">
+                <!-- ==========================================
+                     HOW TO ADD PHOTOS:
+                     Copy this block and paste below:
+                     
+                     <div class="gallery-item" data-full="FULL_SIZE_IMAGE_URL">
+                         <img src="THUMBNAIL_URL" alt="Photo description">
+                     </div>
+                     ========================================== -->
+                <div class="gallery-item" data-full="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Mountain">
+                </div>
+                <div class="gallery-item" data-full="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" alt="Beach">
+                </div>
             </div>
-            <p class="empty-note" id="photoEmpty">No photos yet. Add some from the admin panel!</p>
+
+            <!-- YEAR: 2025 -->
+            <!-- To add a new year, copy this section:
+            <section class="card year-section">
+                <h2>2025</h2>
+            </section>
+            <div class="gallery photo-gallery">
+                (add gallery-items here)
+            </div>
+            -->
 
             <a href="#" class="card nav-card back-link" data-page="studio">
                 <span>← Studio</span>
@@ -489,18 +535,31 @@
         </div>
     </main>
 
-    <!-- Checkout Counter Page -->
+    <!-- ====================================================
+         CHECKOUT COUNTER PAGE (List)
+         ==================================================== -->
     <main id="checkout-counter" class="page">
         <div class="container">
             <section class="card">
                 <h1 class="page-title">Checkout Counter</h1>
-                <p>monthly recommendations of films, books, articles, and interesting links.</p>
+                <p>monthly recommendations of films, books, articles, and interesting links from around the web.</p>
             </section>
 
-            <section class="card blog-list" id="checkoutList">
-                <!-- Checkout entries loaded dynamically -->
+            <section class="card blog-list">
+                <!-- ==========================================
+                     HOW TO ADD CHECKOUT POSTS:
+                     Same as blog posts - add the post below, then link here:
+                     
+                     <a href="#" class="blog-entry" data-page="checkout-post" data-post="checkout-1">
+                         <span class="blog-title">The Checkout Counter #1</span>
+                         <span class="blog-date">January 2026</span>
+                     </a>
+                     ========================================== -->
+                <a href="#" class="blog-entry" data-page="checkout-post" data-post="checkout-1">
+                    <span class="blog-title">The Checkout Counter #1</span>
+                    <span class="blog-date">January 2026</span>
+                </a>
             </section>
-            <p class="empty-note" id="checkoutEmpty">No checkout posts yet. Add some from the admin panel!</p>
 
             <a href="#" class="card nav-card back-link" data-page="studio">
                 <span>← Studio</span>
@@ -508,11 +567,67 @@
         </div>
     </main>
 
-    <!-- Checkout Post Page -->
-    <main id="checkout-post" class="page">
+    <!-- ====================================================
+         CHECKOUT POSTS SECTION
+         ==================================================== -->
+    
+    <!-- CHECKOUT POST: checkout-1 -->
+    <main id="checkout-post-checkout-1" class="page checkout-post-page">
         <div class="container checkout-container">
-            <article class="card checkout-article" id="checkoutPostContent">
-                <!-- Checkout post loaded dynamically -->
+            <article class="card checkout-article">
+                <header class="checkout-header">
+                    <div class="checkout-title-row">
+                        <h1>The Checkout Counter #1</h1>
+                        <span class="checkout-date">January 2026</span>
+                    </div>
+                </header>
+
+                <div class="checkout-intro">
+                    <p>welcome to the first checkout counter! here are my recommendations for this month.</p>
+                </div>
+
+                <div class="checkout-sections">
+                    <section class="checkout-section">
+                        <h2>Film</h2>
+                        <!-- Add film recommendations -->
+                        <div class="rec-item">
+                            <p>☞ <a href="#"><em>Film Title</em></a>, 2024</p>
+                            <p class="rec-meta">Genre. A brief description of the film.</p>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+                        <h2>Books</h2>
+                        <!-- Add book recommendations -->
+                        <div class="rec-item">
+                            <p>☞ <em>Book Title</em>, Author Name</p>
+                            <p class="rec-meta">Genre. A brief description of the book.</p>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+                        <h2>Articles &amp; essays</h2>
+                        <!-- Add article recommendations -->
+                        <div class="rec-item">
+                            <p>☞ <a href="#">Article Title</a>, Author Name</p>
+                        </div>
+                    </section>
+
+                    <section class="checkout-section">
+                        <h2>Around the web</h2>
+                        <!-- Add interesting links -->
+                        <div class="rec-item">
+                            <p>☞ <a href="#">Cool Website</a></p>
+                            <p class="rec-meta">A brief description</p>
+                        </div>
+                    </section>
+                </div>
+
+                <nav class="checkout-nav">
+                    <!-- Update these links as you add more checkout posts -->
+                    <span class="checkout-nav-link prev"></span>
+                    <span class="checkout-nav-link next">February 2026 →</span>
+                </nav>
             </article>
             <a href="#" class="card nav-card back-link" data-page="checkout-counter">
                 <span>← Back to Checkout Counter</span>
@@ -520,7 +635,16 @@
         </div>
     </main>
 
-    <!-- Lightbox -->
+    <!-- ==========================================
+         HOW TO ADD A NEW CHECKOUT POST:
+         
+         1. Copy the checkout-post-checkout-1 section above
+         2. Change the id to checkout-post-checkout-2 (or your number)
+         3. Update the content
+         4. Add a link in the checkout-counter page
+         ========================================== -->
+
+    <!-- Lightbox for images -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" id="closeLightbox">&times;</button>
         <img src="" alt="" id="lightboxImage">
