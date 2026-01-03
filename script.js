@@ -1,46 +1,38 @@
-// =============================================
-// COSMOSTERIA - Simple Static Site
-// =============================================
+/*
+    cosmosteria scripts
+    handles page navigation, filters, and lightbox
+*/
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // =============================================
-    // Page Navigation
-    // =============================================
+    // ~~ page navigation ~~
     
     function showPage(pageId, postId = null) {
-        // Hide all pages
+        // hide all pages first
         document.querySelectorAll('.page').forEach(page => {
             page.classList.remove('active');
         });
         
-        // Handle blog posts and checkout posts
+        // figure out which page to show
         if (pageId === 'blog-post' && postId) {
             const blogPage = document.getElementById('blog-post-' + postId);
-            if (blogPage) {
-                blogPage.classList.add('active');
-            }
+            if (blogPage) blogPage.classList.add('active');
         } else if (pageId === 'checkout-post' && postId) {
             const checkoutPage = document.getElementById('checkout-post-' + postId);
-            if (checkoutPage) {
-                checkoutPage.classList.add('active');
-            }
+            if (checkoutPage) checkoutPage.classList.add('active');
         } else {
-            // Regular pages
             const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
+            if (targetPage) targetPage.classList.add('active');
         }
         
-        // Scroll to top
+        // scroll back to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        // Update URL
+        // update the url
         history.pushState(null, '', '#' + pageId);
     }
     
-    // Add click handlers to all navigation links
+    // click handlers for all nav links
     document.querySelectorAll('[data-page]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -50,37 +42,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Handle browser back/forward buttons
+    // handle browser back/forward buttons
     window.addEventListener('popstate', function() {
         const hash = window.location.hash.slice(1) || 'home';
         showPage(hash);
     });
     
-    // Check for initial hash on page load
+    // check if there's a hash in the url on page load
     const initialHash = window.location.hash.slice(1);
     if (initialHash) {
         showPage(initialHash);
     }
     
-    // =============================================
-    // Filter Tags (for Library and Cinema)
-    // =============================================
+    // ~~ filter tags (library & cinema) ~~
     
     document.querySelectorAll('.filter-tags .tag').forEach(tag => {
         tag.addEventListener('click', function() {
             const parent = this.parentElement;
             const filter = this.getAttribute('data-filter');
             
-            // Update active state
+            // update which tag looks active
             parent.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             
-            // Find the gallery (next sibling with .gallery class)
+            // find the gallery
             let gallery = parent.closest('.card').nextElementSibling;
             while (gallery && !gallery.classList.contains('gallery')) {
                 gallery = gallery.nextElementSibling;
             }
             
+            // show/hide items based on filter
             if (gallery) {
                 gallery.querySelectorAll('.gallery-item').forEach(item => {
                     const itemFilter = item.getAttribute('data-filter') || '';
@@ -94,9 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // =============================================
-    // Lightbox for Images
-    // =============================================
+    // ~~ lightbox for images ~~
     
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
@@ -112,32 +101,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
-    // Add click handlers to gallery items
+    // click on gallery items to open lightbox
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function() {
             const fullSrc = this.getAttribute('data-full');
             const img = this.querySelector('img');
             const src = fullSrc || (img ? img.src : '');
-            if (src) {
-                openLightbox(src);
-            }
+            if (src) openLightbox(src);
         });
     });
     
-    // Close lightbox
+    // close lightbox
     document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
     
     lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
+        if (e.target === lightbox) closeLightbox();
     });
     
-    // Escape key closes lightbox
+    // esc key closes lightbox
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeLightbox();
-        }
+        if (e.key === 'Escape') closeLightbox();
     });
     
 });
