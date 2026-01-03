@@ -1,782 +1,718 @@
-// =============================================
-// COSMOSTERIA - Website with Admin Panel
-// =============================================
+/* CSS Custom Properties - Color Palette */
+:root {
+    --main-bold: #5F849C;
+    --accent: #474747;
+    --complementary: #DAE4EB;
+    --light-neutral: #FEFEFE;
+    --dark-neutral: #9E9383;
+    
+    /* Applied colors - Light theme */
+    --bg-primary: #F5F0EB;
+    --bg-secondary: #EDE8E3;
+    --card-bg: var(--light-neutral);
+    --card-border: #D4CFC9;
+    --text-primary: var(--accent);
+    --text-secondary: #6b6b6b;
+    --link-color: var(--main-bold);
+    --link-hover: #4a6d80;
+    --nav-border: var(--main-bold);
+}
 
-// CHANGE THIS PASSWORD TO YOUR OWN!
-const ADMIN_PASSWORD = 'cosmosteria2025';
+/* Reset and Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-// =============================================
-// Data Storage (uses localStorage)
-// =============================================
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
 
-const Store = {
-    get(key) {
-        const data = localStorage.getItem('cosmo_' + key);
-        return data ? JSON.parse(data) : [];
-    },
-    set(key, data) {
-        localStorage.setItem('cosmo_' + key, JSON.stringify(data));
-    },
-    add(key, item) {
-        const data = this.get(key);
-        item.id = Date.now().toString();
-        data.unshift(item);
-        this.set(key, data);
-        return item;
-    },
-    delete(key, id) {
-        const data = this.get(key);
-        const filtered = data.filter(item => item.id !== id);
-        this.set(key, filtered);
-    },
-    getById(key, id) {
-        const data = this.get(key);
-        return data.find(item => item.id === id);
+body {
+    font-family: 'Lora', Georgia, serif;
+    background-color: var(--bg-primary);
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.02) 2px,
+            rgba(0, 0, 0, 0.02) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.02) 2px,
+            rgba(0, 0, 0, 0.02) 4px
+        );
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-family: 'VT323', monospace;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+h3, h4 {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+p {
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+em {
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--card-border);
+    margin: 1rem 0;
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--card-bg);
+    border-bottom: 3px solid var(--nav-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.site-title {
+    font-family: 'VT323', monospace;
+    font-size: 1.25rem;
+    color: var(--main-bold);
+    text-decoration: none;
+}
+
+.site-title:hover {
+    color: var(--link-hover);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--main-bold);
+}
+
+/* Page Container */
+.page {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.nav-card {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-card:hover {
+    background-color: var(--complementary);
+    border-color: var(--main-bold);
+    transform: translateY(-2px);
+}
+
+.nav-card h2 {
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.nav-card p {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+/* Hero Section */
+.hero-card {
+    text-align: left;
+}
+
+.hero-image {
+    width: 100%;
+    margin: 1rem 0;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.dithered-effect {
+    filter: grayscale(100%) contrast(1.1);
+}
+
+.intro-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+/* Layout Columns */
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 0;
+}
+
+.three-column {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 0;
+}
+
+.single-column {
+    margin-bottom: 0;
+}
+
+/* Currently Section */
+.currently p {
+    margin-bottom: 0.5rem;
+}
+
+/* Find Me Section */
+.find-me p {
+    margin-bottom: 0.5rem;
+}
+
+/* Updates Section */
+.update-item {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.update-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.update-item h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--dark-neutral);
+}
+
+.update-item p {
+    margin-bottom: 0;
+}
+
+/* Guestbook placeholder */
+.cbox-placeholder {
+    background-color: var(--bg-secondary);
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.cbox-placeholder p {
+    margin-bottom: 0.25rem;
+}
+
+/* About Page */
+.about-image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Back Link */
+.back-link {
+    display: inline-block;
+    padding: 1rem 1.25rem;
+}
+
+.back-link span {
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.back-link:hover span {
+    color: var(--main-bold);
+}
+
+/* Filter Tags */
+.filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tag {
+    font-family: 'VT323', monospace;
+    font-size: 0.95rem;
+    background-color: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 2px;
+    padding: 0.35rem 0.75rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    border-color: var(--main-bold);
+    color: var(--main-bold);
+}
+
+.tag.active {
+    background-color: var(--complementary);
+    border-color: var(--main-bold);
+    color: var(--text-primary);
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.gallery-item {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-gallery .gallery-item,
+.film-gallery .gallery-item {
+    aspect-ratio: 2 / 3;
+}
+
+.photo-gallery .gallery-item,
+.art-gallery .gallery-item {
+    aspect-ratio: 1 / 1;
+}
+
+/* Year Section */
+.year-section {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.year-section h2 {
+    margin-bottom: 0;
+}
+
+/* Video Container */
+.video-container {
+    padding: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    display: block;
+    width: 100%;
+    height: 400px;
+    border-radius: 4px;
+}
+
+/* Blog List */
+.blog-list {
+    padding: 0;
+}
+
+.blog-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--card-border);
+    transition: background-color 0.2s ease;
+}
+
+.blog-entry:last-child {
+    border-bottom: none;
+}
+
+.blog-entry:hover {
+    background-color: var(--complementary);
+}
+
+.blog-title {
+    font-family: 'VT323', monospace;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+}
+
+.blog-date {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: var(--dark-neutral);
+}
+
+/* Blog Article */
+.blog-container {
+    max-width: 700px;
+}
+
+.blog-article {
+    padding: 1.5rem;
+}
+
+.blog-header {
+    margin-bottom: 2rem;
+}
+
+.blog-post-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.blog-hero-image {
+    width: 100%;
+    margin: 1rem 0;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.blog-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blog-date-full {
+    display: block;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: var(--dark-neutral);
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--card-border);
+}
+
+.blog-content {
+    margin-bottom: 2rem;
+}
+
+.blog-content p {
+    margin-bottom: 1.25rem;
+    text-align: justify;
+}
+
+/* Checkout Counter Styles */
+.checkout-container {
+    max-width: 750px;
+}
+
+.checkout-article {
+    padding: 0;
+    overflow: hidden;
+}
+
+.checkout-header {
+    padding: 1.25rem;
+    background-color: var(--complementary);
+}
+
+.checkout-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-title-row h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+.checkout-date {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: var(--dark-neutral);
+}
+
+.checkout-intro {
+    padding: 1.25rem;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.checkout-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.checkout-sections {
+    padding: 1.25rem;
+}
+
+.checkout-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+.checkout-section:last-child {
+    margin-bottom: 0;
+}
+
+.checkout-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.rec-item {
+    margin-bottom: 0.75rem;
+}
+
+.rec-item:last-child {
+    margin-bottom: 0;
+}
+
+.rec-item p {
+    margin-bottom: 0.25rem;
+}
+
+.rec-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding-left: 1.5rem;
+}
+
+.checkout-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background-color: var(--complementary);
+    border-top: 1px solid var(--card-border);
+}
+
+.checkout-nav-link {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+}
+
+#lightboxImage {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-nav {
+        padding: 1rem;
     }
-};
-
-// =============================================
-// Admin State
-// =============================================
-
-let isAdmin = false;
-
-function checkAdmin() {
-    isAdmin = sessionStorage.getItem('cosmo_admin') === 'true';
-    updateAdminUI();
-}
-
-function login(password) {
-    if (password === ADMIN_PASSWORD) {
-        isAdmin = true;
-        sessionStorage.setItem('cosmo_admin', 'true');
-        updateAdminUI();
-        return true;
-    }
-    return false;
-}
-
-function logout() {
-    isAdmin = false;
-    sessionStorage.removeItem('cosmo_admin');
-    updateAdminUI();
-}
-
-function updateAdminUI() {
-    const panel = document.getElementById('adminPanel');
-    const toggle = document.getElementById('adminToggle');
     
-    if (isAdmin) {
-        panel.classList.add('active');
-        toggle.classList.add('active');
-        document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.style.display = 'flex';
-        });
-    } else {
-        panel.classList.remove('active');
-        toggle.classList.remove('active');
-        document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.style.display = 'none';
-        });
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .two-column,
+    .three-column {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .checkout-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 }
 
-// =============================================
-// Page Navigation
-// =============================================
-
-function showPage(pageId, data = null) {
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    const target = document.getElementById(pageId);
-    if (target) {
-        target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        // Load content for dynamic pages
-        switch(pageId) {
-            case 'home':
-                renderHomeUpdates();
-                renderGuestbook();
-                break;
-            case 'writings':
-                renderBlogList();
-                break;
-            case 'blog-post':
-                renderBlogPost(data);
-                break;
-            case 'library':
-                renderBooks();
-                break;
-            case 'cinema':
-                renderFilms();
-                break;
-            case 'art-studio':
-                renderDrawings();
-                break;
-            case 'darkroom':
-                renderPhotos();
-                break;
-            case 'checkout-counter':
-                renderCheckoutList();
-                break;
-            case 'checkout-post':
-                renderCheckoutPost(data);
-                break;
-        }
-        
-        updateAdminUI();
+@media (max-width: 480px) {
+    .nav-links a {
+        font-size: 0.95rem;
     }
     
-    history.pushState(null, '', '#' + pageId);
-}
-
-// =============================================
-// Render Functions
-// =============================================
-
-function renderHomeUpdates() {
-    const container = document.getElementById('homeUpdates');
-    const blogs = Store.get('blogs').slice(0, 3);
-    
-    if (blogs.length === 0) {
-        container.innerHTML = '<p class="empty-note">No updates yet.</p>';
-        return;
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
     }
-    
-    container.innerHTML = blogs.map(blog => `
-        <div class="update-item">
-            <a href="#" data-page="blog-post" data-id="${blog.id}">${blog.title}</a>
-            <span style="color: var(--dark-neutral); font-size: 0.85rem;"> - ${formatDate(blog.date)}</span>
-        </div>
-    `).join('');
-    
-    container.querySelectorAll('[data-page]').forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            showPage('blog-post', link.dataset.id);
-        });
-    });
 }
 
-function renderGuestbook() {
-    const container = document.getElementById('guestbookEntries');
-    const entries = Store.get('guestbook');
-    
-    if (entries.length === 0) {
-        container.innerHTML = '<p style="color: var(--dark-neutral); font-style: italic; font-size: 0.85rem;">Be the first to sign!</p>';
-        return;
-    }
-    
-    container.innerHTML = entries.slice(0, 20).map(entry => `
-        <div class="entry">
-            <span class="name">${escapeHtml(entry.name)}</span>
-            <span class="entry-text">${escapeHtml(entry.message)}</span>
-            <span class="time">${timeAgo(entry.timestamp)}</span>
-        </div>
-    `).join('');
+/* Selection */
+::selection {
+    background-color: var(--main-bold);
+    color: var(--light-neutral);
 }
 
-function renderBlogList() {
-    const container = document.getElementById('blogList');
-    const empty = document.getElementById('blogEmpty');
-    const blogs = Store.get('blogs');
-    
-    if (blogs.length === 0) {
-        container.style.display = 'none';
-        empty.style.display = 'block';
-        return;
-    }
-    
-    container.style.display = 'block';
-    empty.style.display = 'none';
-    
-    container.innerHTML = blogs.map(blog => `
-        <a href="#" class="blog-entry" data-page="blog-post" data-id="${blog.id}">
-            <span class="blog-title">${escapeHtml(blog.title)}</span>
-            <span class="blog-date">${formatDate(blog.date)}</span>
-            ${isAdmin ? `<button class="delete-btn" data-delete="blogs" data-id="${blog.id}" style="display: flex;">&times;</button>` : ''}
-        </a>
-    `).join('');
-    
-    attachBlogListeners(container);
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-function renderBlogPost(id) {
-    const container = document.getElementById('blogPostContent');
-    const blog = Store.getById('blogs', id);
-    
-    if (!blog) {
-        container.innerHTML = '<p>Post not found.</p>';
-        return;
-    }
-    
-    container.innerHTML = `
-        <header class="blog-header">
-            <h1 class="blog-post-title">${escapeHtml(blog.title)}</h1>
-            ${blog.subtitle ? `<p class="blog-subtitle">${escapeHtml(blog.subtitle)}</p>` : ''}
-            ${blog.image ? `<div class="blog-hero-image"><img src="${escapeHtml(blog.image)}" alt="${escapeHtml(blog.title)}"></div>` : ''}
-            <time class="blog-date-full">${formatDateLong(blog.date)}</time>
-        </header>
-        <div class="blog-content">
-            ${blog.content.split('\n').filter(p => p.trim()).map(p => `<p>${escapeHtml(p)}</p>`).join('')}
-        </div>
-    `;
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
 }
 
-function renderBooks() {
-    const container = document.getElementById('bookGallery');
-    const empty = document.getElementById('bookEmpty');
-    const books = Store.get('books');
-    
-    if (books.length === 0) {
-        container.style.display = 'none';
-        empty.style.display = 'block';
-        return;
-    }
-    
-    container.style.display = 'grid';
-    empty.style.display = 'none';
-    
-    container.innerHTML = books.map(book => `
-        <div class="gallery-item" data-genre="${book.genre || ''}" data-src="${escapeHtml(book.cover)}" title="${escapeHtml(book.title)} by ${escapeHtml(book.author)}">
-            <img src="${escapeHtml(book.cover)}" alt="${escapeHtml(book.title)}">
-            ${isAdmin ? `<button class="delete-btn" data-delete="books" data-id="${book.id}">&times;</button>` : ''}
-        </div>
-    `).join('');
-    
-    attachGalleryListeners(container, 'books');
+::-webkit-scrollbar-thumb {
+    background: var(--dark-neutral);
+    border-radius: 4px;
 }
 
-function renderFilms() {
-    const container = document.getElementById('filmGallery');
-    const empty = document.getElementById('filmEmpty');
-    const films = Store.get('films');
-    
-    if (films.length === 0) {
-        container.style.display = 'none';
-        empty.style.display = 'block';
-        return;
-    }
-    
-    container.style.display = 'grid';
-    empty.style.display = 'none';
-    
-    container.innerHTML = films.map(film => `
-        <div class="gallery-item" data-genre="${film.genre || ''}" data-src="${escapeHtml(film.poster)}" title="${escapeHtml(film.title)} (${film.year})">
-            <img src="${escapeHtml(film.poster)}" alt="${escapeHtml(film.title)}">
-            ${isAdmin ? `<button class="delete-btn" data-delete="films" data-id="${film.id}">&times;</button>` : ''}
-        </div>
-    `).join('');
-    
-    attachGalleryListeners(container, 'films');
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-bold);
 }
-
-function renderDrawings() {
-    const container = document.getElementById('artGallery');
-    const empty = document.getElementById('artEmpty');
-    const drawings = Store.get('drawings');
-    
-    if (drawings.length === 0) {
-        container.style.display = 'none';
-        empty.style.display = 'block';
-        return;
-    }
-    
-    container.style.display = 'grid';
-    empty.style.display = 'none';
-    
-    container.innerHTML = drawings.map(drawing => `
-        <div class="gallery-item" data-src="${escapeHtml(drawing.url)}" title="${escapeHtml(drawing.title)}">
-            <img src="${escapeHtml(drawing.url)}" alt="${escapeHtml(drawing.title)}">
-            ${isAdmin ? `<button class="delete-btn" data-delete="drawings" data-id="${drawing.id}">&times;</button>` : ''}
-        </div>
-    `).join('');
-    
-    attachGalleryListeners(container, 'drawings');
-}
-
-function renderPhotos() {
-    const container = document.getElementById('photoGalleryContainer');
-    const empty = document.getElementById('photoEmpty');
-    const photos = Store.get('photos');
-    
-    if (photos.length === 0) {
-        container.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-    }
-    
-    empty.style.display = 'none';
-    
-    // Group by year
-    const byYear = {};
-    photos.forEach(photo => {
-        const year = photo.year || 'Other';
-        if (!byYear[year]) byYear[year] = [];
-        byYear[year].push(photo);
-    });
-    
-    // Sort years descending
-    const years = Object.keys(byYear).sort((a, b) => b - a);
-    
-    container.innerHTML = years.map(year => `
-        <section class="card year-section">
-            <h2>${year}</h2>
-        </section>
-        <div class="gallery photo-gallery">
-            ${byYear[year].map(photo => `
-                <div class="gallery-item" data-src="${escapeHtml(photo.url)}" title="${escapeHtml(photo.title)}">
-                    <img src="${escapeHtml(photo.url)}" alt="${escapeHtml(photo.title)}">
-                    ${isAdmin ? `<button class="delete-btn" data-delete="photos" data-id="${photo.id}">&times;</button>` : ''}
-                </div>
-            `).join('')}
-        </div>
-    `).join('');
-    
-    // Attach listeners to all photo galleries
-    container.querySelectorAll('.gallery').forEach(gallery => {
-        attachGalleryListeners(gallery, 'photos');
-    });
-}
-
-function renderCheckoutList() {
-    const container = document.getElementById('checkoutList');
-    const empty = document.getElementById('checkoutEmpty');
-    const checkouts = Store.get('checkouts');
-    
-    if (checkouts.length === 0) {
-        container.style.display = 'none';
-        empty.style.display = 'block';
-        return;
-    }
-    
-    container.style.display = 'block';
-    empty.style.display = 'none';
-    
-    container.innerHTML = checkouts.map(checkout => `
-        <a href="#" class="blog-entry" data-page="checkout-post" data-id="${checkout.id}">
-            <span class="blog-title">The Checkout Counter #${checkout.number}</span>
-            <span class="blog-date">${escapeHtml(checkout.month)}</span>
-            ${isAdmin ? `<button class="delete-btn" data-delete="checkouts" data-id="${checkout.id}" style="display: flex;">&times;</button>` : ''}
-        </a>
-    `).join('');
-    
-    attachBlogListeners(container, 'checkout-post');
-}
-
-function renderCheckoutPost(id) {
-    const container = document.getElementById('checkoutPostContent');
-    const checkout = Store.getById('checkouts', id);
-    
-    if (!checkout) {
-        container.innerHTML = '<p>Post not found.</p>';
-        return;
-    }
-    
-    let sectionsHtml = '';
-    
-    if (checkout.films && checkout.films.length > 0) {
-        sectionsHtml += `
-            <section class="checkout-section">
-                <h2>Film</h2>
-                ${checkout.films.map(f => `
-                    <div class="rec-item">
-                        <p>☞ <em>${escapeHtml(f.title)}</em>, ${escapeHtml(f.year)}</p>
-                        <p class="rec-meta">${escapeHtml(f.genre)}. ${escapeHtml(f.desc)}</p>
-                    </div>
-                `).join('')}
-            </section>
-        `;
-    }
-    
-    if (checkout.books && checkout.books.length > 0) {
-        sectionsHtml += `
-            <section class="checkout-section">
-                <h2>Books</h2>
-                ${checkout.books.map(b => `
-                    <div class="rec-item">
-                        <p>☞ <em>${escapeHtml(b.title)}</em>, ${escapeHtml(b.author)}</p>
-                        <p class="rec-meta">${escapeHtml(b.genre)}. ${escapeHtml(b.desc)}</p>
-                    </div>
-                `).join('')}
-            </section>
-        `;
-    }
-    
-    if (checkout.links && checkout.links.length > 0) {
-        sectionsHtml += `
-            <section class="checkout-section">
-                <h2>Around the web</h2>
-                ${checkout.links.map(l => `
-                    <div class="rec-item">
-                        <p>☞ <a href="${escapeHtml(l.url)}" target="_blank">${escapeHtml(l.title)}</a></p>
-                        ${l.desc ? `<p class="rec-meta">${escapeHtml(l.desc)}</p>` : ''}
-                    </div>
-                `).join('')}
-            </section>
-        `;
-    }
-    
-    container.innerHTML = `
-        <header class="checkout-header">
-            <div class="checkout-title-row">
-                <h1>The Checkout Counter #${checkout.number}</h1>
-                <span class="checkout-date">${escapeHtml(checkout.month)}</span>
-            </div>
-        </header>
-        ${checkout.intro ? `<div class="checkout-intro"><p>${escapeHtml(checkout.intro)}</p></div>` : ''}
-        <div class="checkout-sections">
-            ${sectionsHtml || '<p>No recommendations yet.</p>'}
-        </div>
-    `;
-}
-
-// =============================================
-// Event Listeners
-// =============================================
-
-function attachBlogListeners(container, targetPage = 'blog-post') {
-    container.querySelectorAll('[data-page]').forEach(link => {
-        link.addEventListener('click', e => {
-            if (e.target.classList.contains('delete-btn')) return;
-            e.preventDefault();
-            showPage(targetPage, link.dataset.id);
-        });
-    });
-    
-    container.querySelectorAll('[data-delete]').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (confirm('Delete this item?')) {
-                Store.delete(btn.dataset.delete, btn.dataset.id);
-                // Re-render current page
-                const activePage = document.querySelector('.page.active').id;
-                showPage(activePage);
-            }
-        });
-    });
-}
-
-function attachGalleryListeners(container, storeKey) {
-    container.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', e => {
-            if (e.target.classList.contains('delete-btn')) return;
-            openLightbox(item.dataset.src);
-        });
-    });
-    
-    container.querySelectorAll('[data-delete]').forEach(btn => {
-        btn.addEventListener('click', e => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (confirm('Delete this item?')) {
-                Store.delete(btn.dataset.delete, btn.dataset.id);
-                const activePage = document.querySelector('.page.active').id;
-                showPage(activePage);
-            }
-        });
-    });
-}
-
-// =============================================
-// Lightbox
-// =============================================
-
-function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightboxImage');
-    img.src = src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// =============================================
-// Utilities
-// =============================================
-
-function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
-
-function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-}
-
-function formatDateLong(dateStr) {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-}
-
-function timeAgo(timestamp) {
-    const seconds = Math.floor((Date.now() - timestamp) / 1000);
-    if (seconds < 60) return 'just now';
-    const minutes = Math.floor(seconds / 60);
-    if (minutes < 60) return minutes + 'm ago';
-    const hours = Math.floor(minutes / 60);
-    if (hours < 24) return hours + 'h ago';
-    const days = Math.floor(hours / 24);
-    if (days < 7) return days + 'd ago';
-    const weeks = Math.floor(days / 7);
-    return weeks + 'w ago';
-}
-
-function parseLines(text, fields) {
-    if (!text.trim()) return [];
-    return text.trim().split('\n').map(line => {
-        const parts = line.split(',').map(p => p.trim());
-        const obj = {};
-        fields.forEach((field, i) => {
-            obj[field] = parts[i] || '';
-        });
-        return obj;
-    });
-}
-
-// =============================================
-// Modal Functions
-// =============================================
-
-function openModal(id) {
-    document.getElementById(id).classList.add('active');
-}
-
-function closeModal(id) {
-    document.getElementById(id).classList.remove('active');
-}
-
-function showForm(type) {
-    document.querySelectorAll('.content-form').forEach(f => f.classList.remove('active'));
-    document.getElementById(type + 'Form').classList.add('active');
-    
-    const titles = {
-        blog: 'Add New Blog Post',
-        photo: 'Add New Photo',
-        drawing: 'Add New Drawing',
-        book: 'Add New Book',
-        film: 'Add New Film',
-        checkout: 'Add New Checkout'
-    };
-    document.getElementById('addContentTitle').textContent = titles[type];
-    openModal('addContentModal');
-}
-
-// =============================================
-// Initialize
-// =============================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    checkAdmin();
-    
-    // Navigation
-    document.querySelectorAll('[data-page]').forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            showPage(link.dataset.page, link.dataset.id);
-        });
-    });
-    
-    // Handle back/forward
-    window.addEventListener('popstate', () => {
-        const hash = window.location.hash.slice(1) || 'home';
-        showPage(hash);
-    });
-    
-    // Initial hash
-    const hash = window.location.hash.slice(1);
-    if (hash) {
-        showPage(hash);
-    } else {
-        renderHomeUpdates();
-        renderGuestbook();
-    }
-    
-    // Admin toggle
-    document.getElementById('adminToggle').addEventListener('click', () => {
-        if (isAdmin) {
-            document.getElementById('adminPanel').classList.toggle('active');
-        } else {
-            openModal('loginModal');
-        }
-    });
-    
-    // Login
-    document.getElementById('loginForm').addEventListener('submit', e => {
-        e.preventDefault();
-        const pw = document.getElementById('adminPassword').value;
-        if (login(pw)) {
-            closeModal('loginModal');
-            document.getElementById('adminPassword').value = '';
-            document.getElementById('loginError').textContent = '';
-        } else {
-            document.getElementById('loginError').textContent = 'Incorrect password';
-        }
-    });
-    
-    // Logout
-    document.getElementById('logoutBtn').addEventListener('click', logout);
-    
-    // Modal closes
-    document.getElementById('closeLogin').addEventListener('click', () => closeModal('loginModal'));
-    document.getElementById('closeAddContent').addEventListener('click', () => closeModal('addContentModal'));
-    
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-        overlay.addEventListener('click', e => {
-            if (e.target === overlay) overlay.classList.remove('active');
-        });
-    });
-    
-    // Admin buttons
-    document.querySelectorAll('[data-type]').forEach(btn => {
-        btn.addEventListener('click', () => showForm(btn.dataset.type));
-    });
-    
-    // Form submissions
-    document.getElementById('blogForm').addEventListener('submit', e => {
-        e.preventDefault();
-        Store.add('blogs', {
-            title: document.getElementById('blogTitle').value,
-            subtitle: document.getElementById('blogSubtitle').value,
-            date: document.getElementById('blogDate').value,
-            image: document.getElementById('blogImage').value,
-            content: document.getElementById('blogContent').value
-        });
-        e.target.reset();
-        closeModal('addContentModal');
-        showPage('writings');
-    });
-    
-    document.getElementById('photoForm').addEventListener('submit', e => {
-        e.preventDefault();
-        Store.add('photos', {
-            title: document.getElementById('photoTitle').value,
-            date: document.getElementById('photoDate').value,
-            year: document.getElementById('photoYear').value,
-            url: document.getElementById('photoUrl').value
-        });
-        e.target.reset();
-        closeModal('addContentModal');
-        showPage('darkroom');
-    });
-    
-    document.getElementById('drawingForm').addEventListener('submit', e => {
-        e.preventDefault();
-        Store.add('drawings', {
-            title: document.getElementById('drawingTitle').value,
-            date: document.getElementById('drawingDate').value,
-            url: document.getElementById('drawingUrl').value,
-            desc: document.getElementById('drawingDesc').value
-        });
-        e.target.reset();
-        closeModal('addContentModal');
-        showPage('art-studio');
-    });
-    
-    document.getElementById('bookForm').addEventListener('submit', e => {
-        e.preventDefault();
-        Store.add('books', {
-            title: document.getElementById('bookTitle').value,
-            author: document.getElementById('bookAuthor').value,
-            cover: document.getElementById('bookCover').value,
-            genre: document.getElementById('bookGenre').value.toLowerCase()
-        });
-        e.target.reset();
-        closeModal('addContentModal');
-        showPage('library');
-    });
-    
-    document.getElementById('filmForm').addEventListener('submit', e => {
-        e.preventDefault();
-        Store.add('films', {
-            title: document.getElementById('filmTitle').value,
-            year: document.getElementById('filmYear').value,
-            poster: document.getElementById('filmPoster').value,
-            genre: document.getElementById('filmGenre').value.toLowerCase()
-        });
-        e.target.reset();
-        closeModal('addContentModal');
-        showPage('cinema');
-    });
-    
-    document.getElementById('checkoutForm').addEventListener('submit', e => {
-        e.preventDefault();
-        Store.add('checkouts', {
-            number: document.getElementById('checkoutNumber').value,
-            month: document.getElementById('checkoutMonth').value,
-            intro: document.getElementById('checkoutIntro').value,
-            films: parseLines(document.getElementById('checkoutFilms').value, ['title', 'year', 'genre', 'desc']),
-            books: parseLines(document.getElementById('checkoutBooks').value, ['title', 'author', 'genre', 'desc']),
-            links: parseLines(document.getElementById('checkoutLinks').value, ['title', 'url', 'desc'])
-        });
-        e.target.reset();
-        closeModal('addContentModal');
-        showPage('checkout-counter');
-    });
-    
-    // Guestbook
-    document.getElementById('gbMessage').addEventListener('keypress', e => {
-        if (e.key === 'Enter') {
-            const name = document.getElementById('gbName').value || 'anon';
-            const message = document.getElementById('gbMessage').value;
-            if (message.trim()) {
-                Store.add('guestbook', {
-                    name: name,
-                    message: message,
-                    timestamp: Date.now()
-                });
-                document.getElementById('gbName').value = '';
-                document.getElementById('gbMessage').value = '';
-                renderGuestbook();
-            }
-        }
-    });
-    
-    // Lightbox
-    document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
-    document.getElementById('lightbox').addEventListener('click', e => {
-        if (e.target.id === 'lightbox') closeLightbox();
-    });
-    
-    // Escape key
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            closeLightbox();
-            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-        }
-    });
-    
-    // Filter tags
-    document.querySelectorAll('.filter-tags .tag').forEach(tag => {
-        tag.addEventListener('click', () => {
-            const parent = tag.parentElement;
-            parent.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-            tag.classList.add('active');
-            
-            const filter = tag.dataset.filter;
-            const gallery = parent.closest('.card').nextElementSibling;
-            
-            if (gallery && gallery.classList.contains('gallery')) {
-                gallery.querySelectorAll('.gallery-item').forEach(item => {
-                    if (filter === 'all' || item.dataset.genre.includes(filter)) {
-                        item.style.display = '';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            }
-        });
-    });
-});
