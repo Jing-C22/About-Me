@@ -1,34 +1,52 @@
-// Page Navigation Handler
+// =============================================
+// COSMOSTERIA - Simple Static Site
+// =============================================
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all navigation links
-    const navLinks = document.querySelectorAll('[data-page]');
-    const pages = document.querySelectorAll('.page');
     
-    // Function to show a specific page
-    function showPage(pageId) {
+    // =============================================
+    // Page Navigation
+    // =============================================
+    
+    function showPage(pageId, postId = null) {
         // Hide all pages
-        pages.forEach(page => {
+        document.querySelectorAll('.page').forEach(page => {
             page.classList.remove('active');
         });
         
-        // Show the target page
-        const targetPage = document.getElementById(pageId);
-        if (targetPage) {
-            targetPage.classList.add('active');
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Handle blog posts and checkout posts
+        if (pageId === 'blog-post' && postId) {
+            const blogPage = document.getElementById('blog-post-' + postId);
+            if (blogPage) {
+                blogPage.classList.add('active');
+            }
+        } else if (pageId === 'checkout-post' && postId) {
+            const checkoutPage = document.getElementById('checkout-post-' + postId);
+            if (checkoutPage) {
+                checkoutPage.classList.add('active');
+            }
+        } else {
+            // Regular pages
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
         }
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Update URL
+        history.pushState(null, '', '#' + pageId);
     }
     
     // Add click handlers to all navigation links
-    navLinks.forEach(link => {
+    document.querySelectorAll('[data-page]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetPage = this.getAttribute('data-page');
-            showPage(targetPage);
-            
-            // Update URL hash
-            history.pushState(null, '', '#' + targetPage);
+            const pageId = this.getAttribute('data-page');
+            const postId = this.getAttribute('data-post');
+            showPage(pageId, postId);
         });
     });
     
@@ -44,71 +62,82 @@ document.addEventListener('DOMContentLoaded', function() {
         showPage(initialHash);
     }
     
-    // Filter tags functionality
-    const filterTags = document.querySelectorAll('.filter-tags .tag');
-    filterTags.forEach(tag => {
+    // =============================================
+    // Filter Tags (for Library and Cinema)
+    // =============================================
+    
+    document.querySelectorAll('.filter-tags .tag').forEach(tag => {
         tag.addEventListener('click', function() {
-            // Remove active from siblings in the same filter group
             const parent = this.parentElement;
+            const filter = this.getAttribute('data-filter');
+            
+            // Update active state
             parent.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
-        });
-    });
-    
-    // Sort tags functionality
-    const sortTags = document.querySelectorAll('.sort-tags .tag');
-    sortTags.forEach(tag => {
-        tag.addEventListener('click', function() {
-            // Remove active from siblings in the same sort group
-            const parent = this.parentElement;
-            parent.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-    
-    // Guestbook form handler (demo)
-    const gbMessage = document.querySelector('.gb-message');
-    if (gbMessage) {
-        gbMessage.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const name = document.querySelector('.gb-name').value || 'anon';
-                const message = this.value;
-                
-                if (message.trim()) {
-                    const entriesContainer = document.querySelector('.guestbook-entries');
-                    const newEntry = document.createElement('div');
-                    newEntry.className = 'entry';
-                    newEntry.innerHTML = `
-                        <span class="name">${escapeHtml(name)}</span>
-                        <span class="entry-text">${escapeHtml(message)}</span>
-                        <span class="time">just now</span>
-                    `;
-                    entriesContainer.insertBefore(newEntry, entriesContainer.firstChild);
-                    
-                    // Clear inputs
-                    document.querySelector('.gb-name').value = '';
-                    this.value = '';
-                }
+            
+            // Find the gallery (next sibling with .gallery class)
+            let gallery = parent.closest('.card').nextElementSibling;
+            while (gallery && !gallery.classList.contains('gallery')) {
+                gallery = gallery.nextElementSibling;
+            }
+            
+            if (gallery) {
+                gallery.querySelectorAll('.gallery-item').forEach(item => {
+                    const itemFilter = item.getAttribute('data-filter') || '';
+                    if (filter === 'all' || itemFilter.includes(filter)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             }
         });
+    });
+    
+    // =============================================
+    // Lightbox for Images
+    // =============================================
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    
+    function openLightbox(src) {
+        lightboxImage.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
     
-    // Helper function to escape HTML
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
     }
     
-    // Add subtle hover effect to gallery items
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach(item => {
+    // Add click handlers to gallery items
+    document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function() {
+            const fullSrc = this.getAttribute('data-full');
             const img = this.querySelector('img');
-            if (img) {
-                // Could open a lightbox here in a full implementation
-                console.log('Gallery item clicked:', img.alt);
+            const src = fullSrc || (img ? img.src : '');
+            if (src) {
+                openLightbox(src);
             }
         });
     });
+    
+    // Close lightbox
+    document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+    
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    
+    // Escape key closes lightbox
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+    
 });
