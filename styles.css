@@ -1,25 +1,27 @@
 /* 
-    cosmosteria styles
-    inspired by studio ghibli ~
-    totoro's forest, howl's sky, chihiro's warmth
+    ✿ cosmosteria ✿
+    a dreamy little world inspired by studio ghibli
+    totoro's forest, howl's castle, the wind rises~
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600&display=swap');
 
 :root {
-    --forest-green: #5a7247;
-    --sky-blue: #7ba3b4;
-    --sunset-pink: #e8b4b8;
-    --cream: #fdf8f0;
-    --warm-white: #fffef9;
-    --soft-brown: #8b7355;
-    --meadow: #a8c686;
-    --cloud: #f0ebe3;
-    --text-dark: #4a4a4a;
-    --text-light: #6b6b6b;
+    /* ghibli sky palette */
+    --sky-light: #e8f4f8;
+    --sky-blue: #a8d4e6;
+    --cloud-white: #fffffe;
+    --grass-green: #8fbc8f;
+    --forest-green: #5d8a66;
+    --sunset-orange: #f4a460;
+    --sunset-pink: #f0b8b8;
+    --earth-brown: #c4a882;
+    --soft-cream: #fdf6e9;
+    --text-brown: #5c4d3d;
+    --text-light: #8b7d6b;
 }
 
-*, *::before, *::after {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -31,167 +33,195 @@ html {
 }
 
 body {
-    font-family: 'Spectral', Georgia, serif;
-    background-color: var(--cream);
-    background-image: 
-        radial-gradient(ellipse at top, rgba(168, 198, 134, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, rgba(232, 180, 184, 0.12) 0%, transparent 50%);
-    color: var(--text-dark);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    background: linear-gradient(180deg, 
+        var(--sky-light) 0%, 
+        var(--soft-cream) 50%,
+        #f5ebe0 100%);
+    background-attachment: fixed;
+    color: var(--text-brown);
     line-height: 1.7;
     min-height: 100vh;
 }
 
-h1, h2, h3, h4 {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    color: var(--forest-green);
-}
+/* ~*~ fonts ~*~ 
+   Nunito - soft, rounded, friendly (main text)
+   Caveat - handwritten, whimsical (headers)
+*/
 
-.page-title {
-    font-size: 2rem;
+h1, h2, h3 {
+    font-family: 'Caveat', cursive;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    color: var(--forest-green);
+    letter-spacing: 0.5px;
 }
 
-h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.75rem;
-}
-
-h3, h4 {
-    font-size: 1.1rem;
-    color: var(--soft-brown);
-}
+h1 { font-size: 2.8rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.4rem; }
 
 p {
-    margin-bottom: 0.75rem;
-    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
 }
 
 a {
-    color: var(--sky-blue);
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-offset: 3px;
-    transition: all 0.2s ease;
+    color: var(--forest-green);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--grass-green);
+    transition: all 0.2s;
 }
 
 a:hover {
-    color: var(--forest-green);
-    text-decoration-style: solid;
+    color: var(--sunset-orange);
+    border-bottom-color: var(--sunset-orange);
 }
 
 strong {
     font-weight: 600;
-    color: var(--soft-brown);
+    color: var(--forest-green);
 }
 
-em {
-    font-style: italic;
-}
-
-hr {
-    border: none;
-    border-top: 1px dashed var(--sunset-pink);
+/* ✿ decorative elements ✿ */
+.decoration {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--grass-green);
     margin: 1rem 0;
+    opacity: 0.7;
 }
 
-/* ~~~~~~~~~ navigation ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   navigation - like a floating cloud
+   ═══════════════════════════════════════ */
 .main-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--warm-white);
-    border-bottom: 3px solid var(--meadow);
+    gap: 3rem;
+    padding: 1.2rem 2rem;
+    background: rgba(255, 255, 254, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px dashed var(--sky-blue);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .site-title {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 1.4rem;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--forest-green);
     text-decoration: none;
-    letter-spacing: 1px;
+    border: none;
 }
 
 .site-title:hover {
-    color: var(--sky-blue);
+    color: var(--sunset-orange);
 }
 
 .nav-links {
     display: flex;
-    align-items: center;
     gap: 2rem;
 }
 
 .nav-links a {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 1rem;
     font-weight: 500;
-    color: var(--soft-brown);
-    text-decoration: none;
+    color: var(--text-brown);
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    transition: all 0.3s;
 }
 
 .nav-links a:hover {
-    color: var(--forest-green);
+    background: var(--sky-blue);
+    color: white;
 }
 
-/* ~~~~~~~~~ pages ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   pages
+   ═══════════════════════════════════════ */
 .page {
     display: none;
-    animation: fadeIn 0.4s ease;
+    animation: floatIn 0.5s ease;
 }
 
 .page.active {
     display: block;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes floatIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
 
 .container {
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
     padding: 2rem;
 }
 
-/* ~~~~~~~~~ cards ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   cards - like little windows
+   ═══════════════════════════════════════ */
 .card {
-    background-color: var(--warm-white);
-    border: 2px solid var(--cloud);
-    border-radius: 12px;
+    background: var(--cloud-white);
+    border: 2px solid var(--sky-blue);
+    border-radius: 20px;
     padding: 1.5rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
     box-shadow: 
-        0 4px 12px rgba(90, 114, 71, 0.08),
-        0 1px 3px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s ease;
+        0 4px 15px rgba(168, 212, 230, 0.2),
+        0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+/* cute corner decoration */
+.card::before {
+    content: "✿";
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background: var(--cloud-white);
+    padding: 0 5px;
+    color: var(--sunset-pink);
+    font-size: 1rem;
 }
 
 .nav-card {
     display: block;
     text-decoration: none;
+    border: none;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .nav-card:hover {
-    background-color: var(--cream);
-    border-color: var(--meadow);
-    transform: translateY(-3px);
+    transform: translateY(-5px) rotate(1deg);
+    border-color: var(--grass-green);
     box-shadow: 
-        0 8px 20px rgba(90, 114, 71, 0.12),
-        0 2px 6px rgba(0, 0, 0, 0.06);
+        0 8px 25px rgba(143, 188, 143, 0.25),
+        0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .nav-card h2 {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
+    transition: color 0.3s;
+}
+
+.nav-card:hover h2 {
+    color: var(--sunset-orange);
 }
 
 .nav-card p {
@@ -200,194 +230,221 @@ hr {
     font-size: 0.9rem;
 }
 
-/* ~~~~~~~~~ landing page ~~~~~~~~~ */
-.landing_page-card {
-    text-align: left;
+/* ═══════════════════════════════════════
+   home page - the welcome area
+   ═══════════════════════════════════════ */
+.welcome-section {
+    text-align: center;
+    padding: 1rem;
 }
 
-.landing_page-image {
+.welcome-section h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--forest-green);
+}
+
+.welcome-image {
     width: 100%;
-    margin: 1rem 0;
+    max-width: 600px;
+    margin: 1.5rem auto;
+    border-radius: 30px;
     overflow: hidden;
-    border-radius: 12px;
-    height: 300px;
-    border: 3px solid var(--cloud);
+    border: 3px solid var(--sky-blue);
+    box-shadow: 0 8px 30px rgba(168, 212, 230, 0.3);
 }
 
-.landing_page-image img {
+.welcome-image img {
     width: 100%;
-    height: 300px;
+    height: 280px;
     object-fit: cover;
     display: block;
 }
 
-.intro-text {
-    font-size: 1rem;
-    color: var(--text-dark);
+.welcome-text {
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    color: var(--text-brown);
     line-height: 1.8;
 }
 
-/* ~~~~~~~~~ hero images ~~~~~~~~~ */
-.hero-card {
-    text-align: left;
-}
-
-.hero-image {
-    width: 100%;
-    margin: 1rem 0;
-    overflow: hidden;
-    border-radius: 12px;
-    height: 250px;
-    border: 3px solid var(--cloud);
-}
-
-.hero-image img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-}
-
-.dithered-effect {
-    filter: saturate(1.1) contrast(0.95);
-}
-
-/* ~~~~~~~~~ columns ~~~~~~~~~ */
-.two-column {
+/* ═══════════════════════════════════════
+   home grid - cozy sections
+   ═══════════════════════════════════════ */
+.home-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
-.three-column {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+.home-grid .card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.four-column {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+.home-grid .card h2::before {
+    font-size: 1.2rem;
 }
 
-.single-column {
-    margin-bottom: 0;
-}
+.currently h2::before { content: "🌿"; }
+.elsewhere h2::before { content: "🌸"; }
+.updates h2::before { content: "🍃"; }
+.guestbook h2::before { content: "✉️"; }
 
-/* ~~~~~~~~~ currently & find me ~~~~~~~~~ */
 .currently p,
-.find-me p {
-    margin-bottom: 0.5rem;
+.elsewhere p {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
 }
 
-/* ~~~~~~~~~ updates ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   updates
+   ═══════════════════════════════════════ */
 .update-item {
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px dashed var(--sunset-pink);
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed var(--sky-blue);
 }
 
 .update-item:last-child {
     border-bottom: none;
-    margin-bottom: 0;
     padding-bottom: 0;
 }
 
 .update-item h4 {
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-    color: var(--soft-brown);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
 }
 
 .update-item p {
     margin-bottom: 0;
+    font-size: 0.95rem;
 }
 
-/* ~~~~~~~~~ about ~~~~~~~~~ */
-.about-image {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-    border: 2px solid var(--cloud);
+/* ═══════════════════════════════════════
+   room pages (sanctuary, atelier)
+   ═══════════════════════════════════════ */
+.room-header {
+    text-align: center;
+    padding: 1rem;
 }
 
-.about-image img {
-    width: 100%;
-    height: auto;
-    display: block;
+.room-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
 }
 
-/* ~~~~~~~~~ back links ~~~~~~~~~ */
-.back-link {
-    display: inline-block;
-    padding: 1rem 1.25rem;
-}
-
-.back-link span {
-    font-family: 'Quicksand', sans-serif;
+.room-header p {
+    color: var(--text-light);
     font-size: 1rem;
-    font-weight: 500;
-    color: var(--soft-brown);
+    max-width: 450px;
+    margin: 0 auto;
 }
 
-.back-link:hover span {
-    color: var(--forest-green);
+.room-image {
+    width: 100%;
+    max-width: 500px;
+    margin: 1.5rem auto;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 3px solid var(--grass-green);
 }
 
-/* ~~~~~~~~~ filter tags ~~~~~~~~~ */
+.room-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+/* ═══════════════════════════════════════
+   back links
+   ═══════════════════════════════════════ */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--sky-light);
+    border-radius: 20px;
+    font-size: 0.95rem;
+    color: var(--text-brown);
+    border: none;
+    transition: all 0.3s;
+}
+
+.back-link:hover {
+    background: var(--sky-blue);
+    color: white;
+}
+
+/* ═══════════════════════════════════════
+   galleries
+   ═══════════════════════════════════════ */
 .filter-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 1rem;
+    margin: 1rem 0;
+    justify-content: center;
 }
 
 .tag {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
-    background-color: var(--cream);
-    border: 1px solid var(--cloud);
+    background: var(--sky-light);
+    border: 2px solid transparent;
     border-radius: 20px;
-    padding: 0.4rem 0.9rem;
-    color: var(--text-light);
+    padding: 0.4rem 1rem;
+    color: var(--text-brown);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
 }
 
 .tag:hover {
     border-color: var(--sky-blue);
-    color: var(--sky-blue);
 }
 
 .tag.active {
-    background-color: var(--meadow);
-    border-color: var(--meadow);
+    background: var(--grass-green);
     color: white;
 }
 
-/* ~~~~~~~~~ galleries ~~~~~~~~~ */
 .gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    margin-bottom: 1.25rem;
+    margin: 1.5rem 0;
 }
 
 .gallery-item {
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 15px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid var(--cloud);
+    transition: all 0.3s;
+    border: 2px solid var(--sky-blue);
 }
 
 .gallery-item:hover {
-    transform: scale(1.03);
-    border-color: var(--meadow);
-    box-shadow: 0 6px 16px rgba(90, 114, 71, 0.15);
+    transform: scale(1.05) rotate(2deg);
+    border-color: var(--sunset-orange);
+    box-shadow: 0 8px 20px rgba(244, 164, 96, 0.25);
 }
 
 .gallery-item img {
@@ -401,39 +458,9 @@ hr {
     aspect-ratio: 2 / 3;
 }
 
-.photo-gallery .gallery-item,
-.art-gallery .gallery-item {
-    aspect-ratio: 1 / 1;
-}
-
-/* ~~~~~~~~~ year sections ~~~~~~~~~ */
-.year-section {
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(90deg, var(--meadow) 0%, transparent 100%);
-    border-radius: 8px 0 0 8px;
-}
-
-.year-section h2 {
-    margin-bottom: 0;
-    color: white;
-}
-
-/* ~~~~~~~~~ video ~~~~~~~~~ */
-.video-container {
-    padding: 0;
-    overflow: hidden;
-    border-radius: 12px;
-}
-
-.video-container iframe {
-    display: block;
-    width: 100%;
-    height: 400px;
-    border-radius: 12px;
-}
-
-/* ~~~~~~~~~ blog list ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   blog list
+   ═══════════════════════════════════════ */
 .blog-list {
     padding: 0;
 }
@@ -442,65 +469,74 @@ hr {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.25rem;
-    text-decoration: none;
-    border-bottom: 1px dashed var(--cloud);
-    transition: all 0.2s ease;
-}
-
-.blog-entry:last-child {
-    border-bottom: none;
+    padding: 1rem 1.2rem;
+    margin: 0.5rem 0;
+    background: var(--sky-light);
+    border-radius: 15px;
+    border: none;
+    transition: all 0.3s;
 }
 
 .blog-entry:hover {
-    background-color: var(--cream);
-    padding-left: 1.5rem;
+    background: var(--sky-blue);
+    color: white;
+    transform: translateX(5px);
+}
+
+.blog-entry:hover .blog-title,
+.blog-entry:hover .blog-date {
+    color: white;
 }
 
 .blog-title {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
     color: var(--forest-green);
 }
 
 .blog-date {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.95rem;
-    color: var(--soft-brown);
+    font-size: 0.9rem;
+    color: var(--text-light);
 }
 
-/* ~~~~~~~~~ blog posts ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   blog posts
+   ═══════════════════════════════════════ */
 .blog-container {
     max-width: 700px;
 }
 
 .blog-article {
-    padding: 1.5rem;
+    border: none;
+}
+
+.blog-article::before {
+    content: "❀";
 }
 
 .blog-header {
+    text-align: center;
     margin-bottom: 2rem;
 }
 
 .blog-post-title {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .blog-subtitle {
+    font-family: 'Nunito', sans-serif;
     font-size: 1rem;
     color: var(--text-light);
     font-style: italic;
-    margin-bottom: 1rem;
 }
 
 .blog-hero-image {
     width: 100%;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
+    border-radius: 20px;
     overflow: hidden;
-    border-radius: 8px;
-    border: 2px solid var(--cloud);
+    border: 2px solid var(--sky-blue);
 }
 
 .blog-hero-image img {
@@ -510,131 +546,109 @@ hr {
 }
 
 .blog-date-full {
-    display: block;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.95rem;
-    color: var(--soft-brown);
-    text-align: center;
-    padding-top: 1rem;
-    border-top: 1px dashed var(--sunset-pink);
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 1rem;
 }
 
 .blog-content {
-    margin-bottom: 2rem;
+    font-size: 1.05rem;
+    line-height: 1.9;
 }
 
 .blog-content p {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.2rem;
 }
 
-/* ~~~~~~~~~ monthly recs ~~~~~~~~~ */
-.checkout-container {
-    max-width: 750px;
+/* ═══════════════════════════════════════
+   video (music box)
+   ═══════════════════════════════════════ */
+.video-container {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid var(--sunset-orange);
 }
 
-.checkout-article {
+.video-container iframe {
+    width: 100%;
+    height: 350px;
+    display: block;
+}
+
+/* ═══════════════════════════════════════
+   monthly treasures
+   ═══════════════════════════════════════ */
+.treasure-article {
+    border: none;
     padding: 0;
     overflow: hidden;
 }
 
-.checkout-header {
-    padding: 1.25rem;
-    background: linear-gradient(135deg, var(--meadow) 0%, var(--sky-blue) 100%);
+.treasure-article::before {
+    display: none;
+}
+
+.treasure-header {
+    background: linear-gradient(135deg, var(--grass-green), var(--sky-blue));
+    padding: 1.5rem;
+    text-align: center;
     color: white;
 }
 
-.checkout-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.treasure-header h1 {
+    color: white;
+    font-size: 2.2rem;
+    margin-bottom: 0.3rem;
 }
 
-.checkout-title-row h1 {
+.treasure-header span {
+    opacity: 0.9;
+}
+
+.treasure-sections {
+    padding: 1.5rem;
+}
+
+.treasure-section {
+    background: var(--sky-light);
+    border-radius: 15px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.treasure-section:last-child {
+    margin-bottom: 0;
+}
+
+.treasure-section h2 {
     font-size: 1.5rem;
-    margin-bottom: 0;
-    color: white;
-}
-
-.checkout-date {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.checkout-intro {
-    padding: 1.25rem;
-    background-color: var(--warm-white);
-    border-bottom: 1px solid var(--cloud);
-}
-
-.checkout-intro p:last-child {
-    margin-bottom: 0;
-}
-
-.checkout-sections {
-    padding: 1.25rem;
-}
-
-.checkout-section {
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background-color: var(--cream);
-    border-radius: 8px;
-    border-left: 3px solid var(--meadow);
-}
-
-.checkout-section:last-child {
-    margin-bottom: 0;
-}
-
-.checkout-section h2 {
-    font-size: 1.15rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.8rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px dashed var(--cloud);
+    border-bottom: 1px dashed var(--sky-blue);
 }
 
 .rec-item {
-    margin-bottom: 0.75rem;
-}
-
-.rec-item:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0.6rem;
 }
 
 .rec-item p {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
 }
 
 .rec-meta {
     font-size: 0.85rem;
     color: var(--text-light);
-    padding-left: 1.5rem;
+    margin-left: 1.5rem;
 }
 
-.checkout-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 1.25rem;
-    background-color: var(--cream);
-    border-top: 1px solid var(--cloud);
-}
-
-.checkout-nav-link {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.95rem;
-    color: var(--soft-brown);
-}
-
-/* ~~~~~~~~~ lightbox ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   lightbox
+   ═══════════════════════════════════════ */
 .lightbox {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(74, 74, 74, 0.95);
+    inset: 0;
+    background: rgba(93, 138, 102, 0.95);
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -648,13 +662,13 @@ hr {
 .lightbox-close {
     position: absolute;
     top: 1.5rem;
-    right: 1.5rem;
+    right: 2rem;
     background: none;
     border: none;
     color: white;
     font-size: 2.5rem;
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .lightbox-close:hover {
@@ -663,35 +677,93 @@ hr {
 
 #lightboxImage {
     max-width: 90%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 8px;
+    max-height: 85vh;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* ~~~~~~~~~ mobile ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   year sections
+   ═══════════════════════════════════════ */
+.year-section {
+    background: linear-gradient(90deg, var(--grass-green), transparent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px 0 0 10px;
+    margin: 1rem 0 0.5rem;
+}
+
+.year-section h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* ═══════════════════════════════════════
+   mobile responsive
+   ═══════════════════════════════════════ */
 @media (max-width: 768px) {
-    .main-nav { padding: 1rem; }
-    .nav-links { gap: 1rem; }
-    .container { padding: 1rem; }
-    .two-column, .three-column, .four-column { grid-template-columns: 1fr; }
-    .gallery { grid-template-columns: repeat(2, 1fr); }
-    .checkout-title-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    .landing_page-image, .hero-image { height: 200px; }
-    .landing_page-image img, .hero-image img { height: 200px; }
+    .main-nav {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .home-grid,
+    .room-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .welcome-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .welcome-image img {
+        height: 200px;
+    }
+    
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.5rem; }
 }
 
-@media (max-width: 480px) {
-    .nav-links a { font-size: 0.9rem; }
-    .page-title { font-size: 1.6rem; }
-}
-
-/* ~~~~~~~~~ extras ~~~~~~~~~ */
+/* ═══════════════════════════════════════
+   little touches ✿
+   ═══════════════════════════════════════ */
 ::selection {
-    background-color: var(--sunset-pink);
+    background: var(--sunset-pink);
     color: white;
 }
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--cream); }
-::-webkit-scrollbar-thumb { background: var(--meadow); border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: var(--forest-green); }
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sky-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--grass-green);
+    border-radius: 10px;
+    border: 2px solid var(--sky-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--forest-green);
+}
+
+/* dreamy image filter */
+.dreamy {
+    filter: saturate(1.05) brightness(1.02);
+}
