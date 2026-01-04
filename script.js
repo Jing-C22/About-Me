@@ -1,6 +1,6 @@
 /*
     cosmosteria scripts
-    handles page navigation, filters, and lightbox
+    navigation, filters, lightbox
 */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -8,84 +8,79 @@ document.addEventListener('DOMContentLoaded', function() {
     // ~~ page navigation ~~
     
     function showPage(pageId, postId = null) {
-        // hide all pages first
+        // hide all pages
         document.querySelectorAll('.page').forEach(page => {
             page.classList.remove('active');
         });
         
         // figure out which page to show
         if (pageId === 'blog-post' && postId) {
-            const blogPage = document.getElementById('blog-post-' + postId);
-            if (blogPage) blogPage.classList.add('active');
-        } else if (pageId === 'checkout-post' && postId) {
-            const checkoutPage = document.getElementById('checkout-post-' + postId);
-            if (checkoutPage) checkoutPage.classList.add('active');
+            const page = document.getElementById('blog-post-' + postId);
+            if (page) page.classList.add('active');
+        } else if (pageId === 'bake-post' && postId) {
+            const page = document.getElementById('bake-post-' + postId);
+            if (page) page.classList.add('active');
+        } else if (pageId === 'treasure-post' && postId) {
+            const page = document.getElementById('treasure-post-' + postId);
+            if (page) page.classList.add('active');
         } else {
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) targetPage.classList.add('active');
+            const page = document.getElementById(pageId);
+            if (page) page.classList.add('active');
         }
         
-        // scroll back to top
+        // scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        // update the url
+        // update url
         history.pushState(null, '', '#' + pageId);
     }
     
-    // click handlers for all nav links
+    // click handlers
     document.querySelectorAll('[data-page]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const pageId = this.getAttribute('data-page');
-            const postId = this.getAttribute('data-post');
-            showPage(pageId, postId);
+            showPage(this.getAttribute('data-page'), this.getAttribute('data-post'));
         });
     });
     
-    // handle browser back/forward buttons
+    // browser back/forward
     window.addEventListener('popstate', function() {
-        const hash = window.location.hash.slice(1) || 'home';
-        showPage(hash);
+        showPage(window.location.hash.slice(1) || 'home');
     });
     
-    // check if there's a hash in the url on page load
-    const initialHash = window.location.hash.slice(1);
-    if (initialHash) {
-        showPage(initialHash);
+    // check for hash on load
+    if (window.location.hash) {
+        showPage(window.location.hash.slice(1));
     }
     
-    // ~~ filter tags (library & cinema) ~~
+    // ~~ filter tags ~~
     
     document.querySelectorAll('.filter-tags .tag').forEach(tag => {
         tag.addEventListener('click', function() {
             const parent = this.parentElement;
             const filter = this.getAttribute('data-filter');
             
-            // update which tag looks active
+            // update active tag
             parent.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             
-            // find the gallery
+            // find gallery
             let gallery = parent.closest('.card').nextElementSibling;
             while (gallery && !gallery.classList.contains('gallery')) {
                 gallery = gallery.nextElementSibling;
             }
             
-            // show/hide items based on filter
+            // filter items
             if (gallery) {
                 gallery.querySelectorAll('.gallery-item').forEach(item => {
                     const itemFilter = item.getAttribute('data-filter') || '';
-                    if (filter === 'all' || itemFilter.includes(filter)) {
-                        item.style.display = '';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                    item.style.display = (filter === 'all' || itemFilter.includes(filter)) ? '' : 'none';
                 });
             }
         });
     });
     
-    // ~~ lightbox for images ~~
+    // ~~ lightbox ~~
     
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
@@ -101,26 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
-    // click on gallery items to open lightbox
+    // gallery clicks
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function() {
-            const fullSrc = this.getAttribute('data-full');
-            const img = this.querySelector('img');
-            const src = fullSrc || (img ? img.src : '');
+            const src = this.getAttribute('data-full') || this.querySelector('img')?.src;
             if (src) openLightbox(src);
         });
     });
     
     // close lightbox
     document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
-    
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) closeLightbox();
-    });
-    
-    // esc key closes lightbox
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeLightbox();
-    });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
     
 });
