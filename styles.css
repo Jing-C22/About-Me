@@ -1,11 +1,12 @@
 /* 
-    heheheehehehehehehehehehehe
-    no one's gonna read this anywayyyy
-    lowkey my head do be hurting ngl tho 
+    cosmosteria styles
+    inspired by studio ghibli ~
+    totoro's forest, howl's sky, chihiro's warmth
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap');
+
 :root {
-    /* ghibli color palette */
     --forest-green: #5a7247;
     --sky-blue: #7ba3b4;
     --sunset-pink: #e8b4b8;
@@ -18,7 +19,6 @@
     --text-light: #6b6b6b;
 }
 
-/* reset stuff */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -31,32 +31,31 @@ html {
 }
 
 body {
-    font-family: 'Lora', Georgia, serif;
+    font-family: 'Spectral', Georgia, serif;
     background-color: var(--cream);
-    /* subtle dreamy gradient cuz why not */
     background-image: 
-        radial-gradient(ellipse at top, rgba(168, 198, 134, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, rgba(232, 180, 184, 0.1) 0%, transparent 50%);
+        radial-gradient(ellipse at top, rgba(168, 198, 134, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(232, 180, 184, 0.12) 0%, transparent 50%);
     color: var(--text-dark);
     line-height: 1.7;
     min-height: 100vh;
 }
 
-/* fonts - handwritten feel */
 h1, h2, h3, h4 {
-    font-family: 'VT323', monospace;
-    font-weight: 400;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
     letter-spacing: 0.5px;
     color: var(--forest-green);
 }
 
 .page-title {
     font-size: 2rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 0.75rem;
 }
 
@@ -98,9 +97,7 @@ hr {
     margin: 1rem 0;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   navigation bar
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ navigation ~~~~~~~~~ */
 .main-nav {
     display: flex;
     justify-content: space-between;
@@ -114,8 +111,9 @@ hr {
 }
 
 .site-title {
-    font-family: 'VT323', monospace;
+    font-family: 'Quicksand', sans-serif;
     font-size: 1.4rem;
+    font-weight: 600;
     color: var(--forest-green);
     text-decoration: none;
     letter-spacing: 1px;
@@ -132,20 +130,18 @@ hr {
 }
 
 .nav-links a {
-    font-family: 'VT323', monospace;
-    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--soft-brown);
     text-decoration: none;
-    transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
     color: var(--forest-green);
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   page container stuff
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ pages ~~~~~~~~~ */
 .page {
     display: none;
     animation: fadeIn 0.4s ease;
@@ -156,14 +152,8 @@ hr {
 }
 
 @keyframes fadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(15px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .container {
@@ -172,9 +162,7 @@ hr {
     padding: 2rem;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cards - the main content boxes
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ cards ~~~~~~~~~ */
 .card {
     background-color: var(--warm-white);
     border: 2px solid var(--cloud);
@@ -212,9 +200,7 @@ hr {
     font-size: 0.9rem;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   landing page / home section
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ landing page ~~~~~~~~~ */
 .landing_page-card {
     text-align: left;
 }
@@ -241,9 +227,7 @@ hr {
     line-height: 1.8;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   hero images for other pages
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ hero images ~~~~~~~~~ */
 .hero-card {
     text-align: left;
 }
@@ -264,43 +248,40 @@ hr {
     display: block;
 }
 
-/* heheehehehe */
 .dithered-effect {
     filter: saturate(1.1) contrast(0.95);
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   layout columns
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ columns ~~~~~~~~~ */
 .two-column {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
-    margin-bottom: 0;
 }
 
 .three-column {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
-    margin-bottom: 0;
+}
+
+.four-column {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
 }
 
 .single-column {
     margin-bottom: 0;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   currently & find me sections
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ currently & find me ~~~~~~~~~ */
 .currently p,
 .find-me p {
     margin-bottom: 0.5rem;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   updates section
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ updates ~~~~~~~~~ */
 .update-item {
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
@@ -323,9 +304,7 @@ hr {
     margin-bottom: 0;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   about page
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ about ~~~~~~~~~ */
 .about-image {
     width: 100%;
     overflow: hidden;
@@ -339,17 +318,16 @@ hr {
     display: block;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   back links
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ back links ~~~~~~~~~ */
 .back-link {
     display: inline-block;
     padding: 1rem 1.25rem;
 }
 
 .back-link span {
-    font-family: 'VT323', monospace;
-    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--soft-brown);
 }
 
@@ -357,9 +335,7 @@ hr {
     color: var(--forest-green);
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   filter tags (for library & cinema)
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ filter tags ~~~~~~~~~ */
 .filter-tags {
     display: flex;
     flex-wrap: wrap;
@@ -368,8 +344,9 @@ hr {
 }
 
 .tag {
-    font-family: 'VT323', monospace;
-    font-size: 0.95rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
     background-color: var(--cream);
     border: 1px solid var(--cloud);
     border-radius: 20px;
@@ -390,9 +367,7 @@ hr {
     color: white;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   gallery grids
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ galleries ~~~~~~~~~ */
 .gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -421,7 +396,6 @@ hr {
     object-fit: cover;
 }
 
-/* book & film galleries have taller aspect ratios */
 .book-gallery .gallery-item,
 .film-gallery .gallery-item {
     aspect-ratio: 2 / 3;
@@ -432,9 +406,7 @@ hr {
     aspect-ratio: 1 / 1;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   year sections (for darkroom)
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ year sections ~~~~~~~~~ */
 .year-section {
     padding: 0.75rem 1.25rem;
     margin-bottom: 0.5rem;
@@ -447,9 +419,7 @@ hr {
     color: white;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   video container (jukebox)
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ video ~~~~~~~~~ */
 .video-container {
     padding: 0;
     overflow: hidden;
@@ -463,9 +433,7 @@ hr {
     border-radius: 12px;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   blog list
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ blog list ~~~~~~~~~ */
 .blog-list {
     padding: 0;
 }
@@ -490,20 +458,19 @@ hr {
 }
 
 .blog-title {
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: var(--forest-green);
 }
 
 .blog-date {
-    font-family: 'VT323', monospace;
-    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
     color: var(--soft-brown);
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   individual blog posts
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ blog posts ~~~~~~~~~ */
 .blog-container {
     max-width: 700px;
 }
@@ -517,7 +484,7 @@ hr {
 }
 
 .blog-post-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
 
@@ -544,8 +511,8 @@ hr {
 
 .blog-date-full {
     display: block;
-    font-family: 'VT323', monospace;
-    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
     color: var(--soft-brown);
     text-align: center;
     padding-top: 1rem;
@@ -560,9 +527,7 @@ hr {
     margin-bottom: 1.25rem;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   checkout counter styles
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ monthly recs ~~~~~~~~~ */
 .checkout-container {
     max-width: 750px;
 }
@@ -591,8 +556,8 @@ hr {
 }
 
 .checkout-date {
-    font-family: 'VT323', monospace;
-    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.9);
 }
 
@@ -623,7 +588,7 @@ hr {
 }
 
 .checkout-section h2 {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px dashed var(--cloud);
@@ -656,14 +621,12 @@ hr {
 }
 
 .checkout-nav-link {
-    font-family: 'VT323', monospace;
-    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
     color: var(--soft-brown);
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   lightbox (for viewing images fullscreen)
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ lightbox ~~~~~~~~~ */
 .lightbox {
     display: none;
     position: fixed;
@@ -692,7 +655,6 @@ hr {
     font-size: 2.5rem;
     cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.2s ease;
 }
 
 .lightbox-close:hover {
@@ -706,87 +668,30 @@ hr {
     border-radius: 8px;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   responsive design - mobile friendly!
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~ mobile ~~~~~~~~~ */
 @media (max-width: 768px) {
-    .main-nav {
-        padding: 1rem;
-    }
-    
-    .nav-links {
-        gap: 1rem;
-    }
-    
-    .container {
-        padding: 1rem;
-    }
-    
-    .two-column,
-    .three-column {
-        grid-template-columns: 1fr;
-    }
-    
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .checkout-title-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    
-    .landing_page-image,
-    .hero-image {
-        height: 200px;
-    }
-    
-    .landing_page-image img,
-    .hero-image img {
-        height: 200px;
-    }
+    .main-nav { padding: 1rem; }
+    .nav-links { gap: 1rem; }
+    .container { padding: 1rem; }
+    .two-column, .three-column, .four-column { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .checkout-title-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .landing_page-image, .hero-image { height: 200px; }
+    .landing_page-image img, .hero-image img { height: 200px; }
 }
 
 @media (max-width: 480px) {
-    .nav-links a {
-        font-size: 0.95rem;
-    }
-    
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .page-title {
-        font-size: 1.6rem;
-    }
+    .nav-links a { font-size: 0.9rem; }
+    .page-title { font-size: 1.6rem; }
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   little extras ~
-   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-/* text selection color - that soft pink! */
+/* ~~~~~~~~~ extras ~~~~~~~~~ */
 ::selection {
     background-color: var(--sunset-pink);
     color: white;
 }
 
-/* custom scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--cream);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--meadow);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--forest-green);
-}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--meadow); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--forest-green); }
