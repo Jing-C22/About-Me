@@ -1,24 +1,22 @@
 /* 
-    ✿ cosmosteria ✿
-    a dreamy little world inspired by studio ghibli
-    totoro's forest, howl's castle, the wind rises~
+    cosmosteria
+    soft, elegant, ghibli-inspired
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
 
 :root {
-    /* ghibli sky palette */
-    --sky-light: #e8f4f8;
-    --sky-blue: #a8d4e6;
-    --cloud-white: #fffffe;
-    --grass-green: #8fbc8f;
-    --forest-green: #5d8a66;
-    --sunset-orange: #f4a460;
-    --sunset-pink: #f0b8b8;
-    --earth-brown: #c4a882;
-    --soft-cream: #fdf6e9;
-    --text-brown: #5c4d3d;
-    --text-light: #8b7d6b;
+    /* gentle ghibli palette */
+    --sky: #dae8ed;
+    --sky-soft: #e8f1f4;
+    --cream: #fdfbf7;
+    --white: #fffffe;
+    --forest: #6a8f7b;
+    --forest-light: #8bb09e;
+    --earth: #a69080;
+    --blush: #e8c4c0;
+    --text: #4a5248;
+    --text-soft: #7a8278;
 }
 
 * {
@@ -35,91 +33,79 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
-    background: linear-gradient(180deg, 
-        var(--sky-light) 0%, 
-        var(--soft-cream) 50%,
-        #f5ebe0 100%);
-    background-attachment: fixed;
-    color: var(--text-brown);
+    background-color: var(--cream);
+    color: var(--text);
     line-height: 1.7;
     min-height: 100vh;
 }
 
-/* ~*~ fonts ~*~ 
-   Nunito - soft, rounded, friendly (main text)
-   Caveat - handwritten, whimsical (headers)
+/* 
+    typography
+    - Nunito: soft rounded sans-serif (headers + body)
+    - Cormorant Garamond: elegant serif (accents)
 */
 
 h1, h2, h3 {
-    font-family: 'Caveat', cursive;
-    font-weight: 600;
-    color: var(--forest-green);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    color: var(--forest);
+}
+
+h1 {
+    font-size: 1.9rem;
     letter-spacing: 0.5px;
 }
 
-h1 { font-size: 2.8rem; }
-h2 { font-size: 1.8rem; }
-h3 { font-size: 1.4rem; }
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+}
 
 p {
-    margin-bottom: 0.8rem;
-    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
 }
 
 a {
-    color: var(--forest-green);
+    color: var(--forest);
     text-decoration: none;
-    border-bottom: 1px dotted var(--grass-green);
+    border-bottom: 1px dotted var(--forest-light);
     transition: all 0.2s;
 }
 
 a:hover {
-    color: var(--sunset-orange);
-    border-bottom-color: var(--sunset-orange);
+    color: var(--earth);
+    border-bottom-color: var(--earth);
 }
 
 strong {
     font-weight: 600;
-    color: var(--forest-green);
+    color: var(--forest);
 }
 
-/* ✿ decorative elements ✿ */
-.decoration {
-    text-align: center;
-    font-size: 1.2rem;
-    color: var(--grass-green);
-    margin: 1rem 0;
-    opacity: 0.7;
-}
-
-/* ═══════════════════════════════════════
-   navigation - like a floating cloud
-   ═══════════════════════════════════════ */
+/* navigation */
 .main-nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 3rem;
-    padding: 1.2rem 2rem;
-    background: rgba(255, 255, 254, 0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 2px dashed var(--sky-blue);
+    padding: 1rem 2rem;
+    background: var(--white);
+    border-bottom: 2px solid var(--sky);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .site-title {
-    font-family: 'Caveat', cursive;
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    color: var(--forest-green);
-    text-decoration: none;
+    color: var(--forest);
     border: none;
+    letter-spacing: 0.5px;
 }
 
 .site-title:hover {
-    color: var(--sunset-orange);
+    color: var(--earth);
 }
 
 .nav-links {
@@ -128,130 +114,91 @@ strong {
 }
 
 .nav-links a {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    color: var(--text-brown);
+    color: var(--text-soft);
     border: none;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    transition: all 0.3s;
 }
 
 .nav-links a:hover {
-    background: var(--sky-blue);
-    color: white;
+    color: var(--forest);
 }
 
-/* ═══════════════════════════════════════
-   pages
-   ═══════════════════════════════════════ */
+/* pages */
 .page {
     display: none;
-    animation: floatIn 0.5s ease;
+    animation: fadeIn 0.4s ease;
 }
 
 .page.active {
     display: block;
 }
 
-@keyframes floatIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .container {
-    max-width: 850px;
+    max-width: 880px;
     margin: 0 auto;
     padding: 2rem;
 }
 
-/* ═══════════════════════════════════════
-   cards - like little windows
-   ═══════════════════════════════════════ */
+/* cards */
 .card {
-    background: var(--cloud-white);
-    border: 2px solid var(--sky-blue);
-    border-radius: 20px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 
-        0 4px 15px rgba(168, 212, 230, 0.2),
-        0 2px 4px rgba(0, 0, 0, 0.05);
-    position: relative;
-}
-
-/* cute corner decoration */
-.card::before {
-    content: "✿";
-    position: absolute;
-    top: -8px;
-    left: 20px;
-    background: var(--cloud-white);
-    padding: 0 5px;
-    color: var(--sunset-pink);
-    font-size: 1rem;
+    background: var(--white);
+    border: 1px solid var(--sky);
+    border-radius: 12px;
+    padding: 1.4rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 8px rgba(106, 143, 123, 0.06);
 }
 
 .nav-card {
     display: block;
-    text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .nav-card:hover {
-    transform: translateY(-5px) rotate(1deg);
-    border-color: var(--grass-green);
-    box-shadow: 
-        0 8px 25px rgba(143, 188, 143, 0.25),
-        0 4px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(106, 143, 123, 0.1);
+    border-color: var(--forest-light);
 }
 
 .nav-card h2 {
-    margin-bottom: 0.3rem;
-    transition: color 0.3s;
-}
-
-.nav-card:hover h2 {
-    color: var(--sunset-orange);
+    margin-bottom: 0.25rem;
 }
 
 .nav-card p {
-    color: var(--text-light);
+    color: var(--text-soft);
     margin-bottom: 0;
     font-size: 0.9rem;
 }
 
-/* ═══════════════════════════════════════
-   home page - the welcome area
-   ═══════════════════════════════════════ */
-.welcome-section {
+/* welcome / landing */
+.welcome-card {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
+    border: none;
+    background: transparent;
+    box-shadow: none;
 }
 
-.welcome-section h1 {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--forest-green);
+.welcome-card h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
 }
 
 .welcome-image {
-    width: 100%;
-    max-width: 600px;
-    margin: 1.5rem auto;
-    border-radius: 30px;
+    max-width: 650px;
+    margin: 0 auto 1.5rem;
+    border-radius: 16px;
     overflow: hidden;
-    border: 3px solid var(--sky-blue);
-    box-shadow: 0 8px 30px rgba(168, 212, 230, 0.3);
+    border: 2px solid var(--sky);
+    box-shadow: 0 4px 20px rgba(106, 143, 123, 0.1);
 }
 
 .welcome-image img {
@@ -262,52 +209,35 @@ strong {
 }
 
 .welcome-text {
-    font-size: 1.1rem;
-    max-width: 500px;
+    max-width: 520px;
     margin: 0 auto;
-    color: var(--text-brown);
+    font-size: 1rem;
     line-height: 1.8;
+    color: var(--text);
 }
 
-/* ═══════════════════════════════════════
-   home grid - cozy sections
-   ═══════════════════════════════════════ */
-.home-grid {
+/* grid layouts */
+.grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1.25rem;
 }
 
-.home-grid .card h2 {
-    font-size: 1.6rem;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+.grid-2.compact {
+    gap: 1rem;
 }
 
-.home-grid .card h2::before {
-    font-size: 1.2rem;
-}
-
-.currently h2::before { content: "🌿"; }
-.elsewhere h2::before { content: "🌸"; }
-.updates h2::before { content: "🍃"; }
-.guestbook h2::before { content: "✉️"; }
-
+/* home sections */
 .currently p,
 .elsewhere p {
     margin-bottom: 0.4rem;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
 }
 
-/* ═══════════════════════════════════════
-   updates
-   ═══════════════════════════════════════ */
+/* updates */
 .update-item {
-    padding: 0.6rem 0;
-    border-bottom: 1px dashed var(--sky-blue);
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--sky);
 }
 
 .update-item:last-child {
@@ -316,45 +246,39 @@ strong {
 }
 
 .update-item h4 {
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: var(--text-light);
-    margin-bottom: 0.2rem;
+    color: var(--text-soft);
+    margin-bottom: 0.15rem;
 }
 
 .update-item p {
     margin-bottom: 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
-/* ═══════════════════════════════════════
-   room pages (sanctuary, atelier)
-   ═══════════════════════════════════════ */
+/* room pages */
 .room-header {
     text-align: center;
-    padding: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .room-header h1 {
-    font-size: 3rem;
     margin-bottom: 0.5rem;
 }
 
 .room-header p {
-    color: var(--text-light);
-    font-size: 1rem;
-    max-width: 450px;
+    color: var(--text-soft);
+    max-width: 420px;
     margin: 0 auto;
 }
 
 .room-image {
-    width: 100%;
-    max-width: 500px;
+    max-width: 520px;
     margin: 1.5rem auto;
-    border-radius: 25px;
+    border-radius: 14px;
     overflow: hidden;
-    border: 3px solid var(--grass-green);
+    border: 2px solid var(--sky);
 }
 
 .room-image img {
@@ -363,88 +287,75 @@ strong {
     object-fit: cover;
 }
 
-.room-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-}
-
-/* ═══════════════════════════════════════
-   back links
-   ═══════════════════════════════════════ */
+/* back links */
 .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
-    background: var(--sky-light);
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    background: var(--sky-soft);
     border-radius: 20px;
-    font-size: 0.95rem;
-    color: var(--text-brown);
     border: none;
-    transition: all 0.3s;
+    transition: all 0.2s;
 }
 
 .back-link:hover {
-    background: var(--sky-blue);
-    color: white;
+    background: var(--sky);
+    color: var(--text);
 }
 
-/* ═══════════════════════════════════════
-   galleries
-   ═══════════════════════════════════════ */
+/* filter tags */
 .filter-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 1rem 0;
-    justify-content: center;
 }
 
 .tag {
     font-family: 'Nunito', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    background: var(--sky-light);
-    border: 2px solid transparent;
-    border-radius: 20px;
-    padding: 0.4rem 1rem;
-    color: var(--text-brown);
+    background: var(--sky-soft);
+    border: 1px solid transparent;
+    border-radius: 16px;
+    padding: 0.35rem 0.85rem;
+    color: var(--text-soft);
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .tag:hover {
-    border-color: var(--sky-blue);
+    border-color: var(--forest-light);
+    color: var(--forest);
 }
 
 .tag.active {
-    background: var(--grass-green);
+    background: var(--forest-light);
     color: white;
 }
 
+/* galleries */
 .gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: 0.9rem;
+    margin: 1.25rem 0;
 }
 
 .gallery-item {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid var(--sky-blue);
+    transition: all 0.25s;
+    border: 1px solid var(--sky);
 }
 
 .gallery-item:hover {
-    transform: scale(1.05) rotate(2deg);
-    border-color: var(--sunset-orange);
-    box-shadow: 0 8px 20px rgba(244, 164, 96, 0.25);
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(106, 143, 123, 0.15);
 }
 
 .gallery-item img {
@@ -458,10 +369,34 @@ strong {
     aspect-ratio: 2 / 3;
 }
 
-/* ═══════════════════════════════════════
-   blog list
-   ═══════════════════════════════════════ */
-.blog-list {
+/* year sections */
+.year-section {
+    background: linear-gradient(90deg, var(--forest-light) 0%, transparent 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 6px 0 0 6px;
+    margin: 1rem 0 0.5rem;
+}
+
+.year-section h2 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* video */
+.video-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.video-card iframe {
+    width: 100%;
+    height: 360px;
+    display: block;
+}
+
+/* blog list */
+.list-card {
     padding: 0;
 }
 
@@ -469,151 +404,114 @@ strong {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.2rem;
-    margin: 0.5rem 0;
-    background: var(--sky-light);
-    border-radius: 15px;
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid var(--sky-soft);
     border: none;
-    transition: all 0.3s;
+    transition: all 0.2s;
+}
+
+.blog-entry:last-child {
+    border-bottom: none;
 }
 
 .blog-entry:hover {
-    background: var(--sky-blue);
-    color: white;
-    transform: translateX(5px);
-}
-
-.blog-entry:hover .blog-title,
-.blog-entry:hover .blog-date {
-    color: white;
+    background: var(--sky-soft);
 }
 
 .blog-title {
-    font-family: 'Caveat', cursive;
-    font-size: 1.4rem;
-    color: var(--forest-green);
+    font-weight: 500;
+    color: var(--forest);
+    font-size: 1rem;
 }
 
 .blog-date {
-    font-size: 0.9rem;
-    color: var(--text-light);
+    font-size: 0.85rem;
+    color: var(--text-soft);
 }
 
-/* ═══════════════════════════════════════
-   blog posts
-   ═══════════════════════════════════════ */
-.blog-container {
-    max-width: 700px;
+/* blog posts */
+.post-container {
+    max-width: 680px;
 }
 
-.blog-article {
-    border: none;
-}
-
-.blog-article::before {
-    content: "❀";
-}
-
-.blog-header {
+.post-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
-.blog-post-title {
-    font-size: 2.5rem;
+.post-title {
+    font-size: 1.8rem;
     margin-bottom: 0.3rem;
 }
 
-.blog-subtitle {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    color: var(--text-light);
+.post-subtitle {
+    color: var(--text-soft);
     font-style: italic;
+    font-size: 0.95rem;
 }
 
-.blog-hero-image {
-    width: 100%;
-    margin: 1.5rem 0;
-    border-radius: 20px;
+.post-image {
+    margin: 1.2rem 0;
+    border-radius: 12px;
     overflow: hidden;
-    border: 2px solid var(--sky-blue);
+    border: 1px solid var(--sky);
 }
 
-.blog-hero-image img {
+.post-image img {
     width: 100%;
-    height: auto;
     display: block;
 }
 
-.blog-date-full {
-    font-size: 0.9rem;
-    color: var(--text-light);
+.post-date {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-soft);
     margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--sky);
 }
 
-.blog-content {
-    font-size: 1.05rem;
-    line-height: 1.9;
+.post-content {
+    font-size: 1rem;
+    line-height: 1.85;
 }
 
-.blog-content p {
-    margin-bottom: 1.2rem;
+.post-content p {
+    margin-bottom: 1.1rem;
 }
 
-/* ═══════════════════════════════════════
-   video (music box)
-   ═══════════════════════════════════════ */
-.video-container {
-    border-radius: 20px;
-    overflow: hidden;
-    border: 3px solid var(--sunset-orange);
-}
-
-.video-container iframe {
-    width: 100%;
-    height: 350px;
-    display: block;
-}
-
-/* ═══════════════════════════════════════
-   monthly treasures
-   ═══════════════════════════════════════ */
-.treasure-article {
-    border: none;
+/* treasures */
+.treasure-card {
     padding: 0;
     overflow: hidden;
 }
 
-.treasure-article::before {
-    display: none;
-}
-
 .treasure-header {
-    background: linear-gradient(135deg, var(--grass-green), var(--sky-blue));
-    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--forest-light), var(--sky));
+    padding: 1.2rem;
     text-align: center;
-    color: white;
 }
 
 .treasure-header h1 {
     color: white;
-    font-size: 2.2rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
 }
 
 .treasure-header span {
-    opacity: 0.9;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
 }
 
-.treasure-sections {
-    padding: 1.5rem;
+.treasure-body {
+    padding: 1.2rem;
 }
 
 .treasure-section {
-    background: var(--sky-light);
-    border-radius: 15px;
-    padding: 1.2rem;
-    margin-bottom: 1rem;
+    background: var(--sky-soft);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.9rem;
 }
 
 .treasure-section:last-child {
@@ -621,34 +519,37 @@ strong {
 }
 
 .treasure-section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px dashed var(--sky-blue);
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px dashed var(--sky);
 }
 
 .rec-item {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
+}
+
+.rec-item:last-child {
+    margin-bottom: 0;
 }
 
 .rec-item p {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.15rem;
+    font-size: 0.92rem;
 }
 
 .rec-meta {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    margin-left: 1.5rem;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    margin-left: 1.3rem;
 }
 
-/* ═══════════════════════════════════════
-   lightbox
-   ═══════════════════════════════════════ */
+/* lightbox */
 .lightbox {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(93, 138, 102, 0.95);
+    background: rgba(74, 82, 72, 0.92);
     z-index: 2000;
     justify-content: center;
     align-items: center;
@@ -666,7 +567,7 @@ strong {
     background: none;
     border: none;
     color: white;
-    font-size: 2.5rem;
+    font-size: 2rem;
     cursor: pointer;
     opacity: 0.8;
 }
@@ -678,46 +579,24 @@ strong {
 #lightboxImage {
     max-width: 90%;
     max-height: 85vh;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }
 
-/* ═══════════════════════════════════════
-   year sections
-   ═══════════════════════════════════════ */
-.year-section {
-    background: linear-gradient(90deg, var(--grass-green), transparent);
-    padding: 0.6rem 1.2rem;
-    border-radius: 10px 0 0 10px;
-    margin: 1rem 0 0.5rem;
-}
-
-.year-section h2 {
-    color: white;
-    font-size: 1.5rem;
-    margin: 0;
-}
-
-/* ═══════════════════════════════════════
-   mobile responsive
-   ═══════════════════════════════════════ */
+/* responsive */
 @media (max-width: 768px) {
     .main-nav {
-        flex-direction: column;
-        gap: 1rem;
         padding: 1rem;
     }
     
     .nav-links {
-        gap: 1rem;
+        gap: 1.2rem;
     }
     
     .container {
-        padding: 1rem;
+        padding: 1.25rem;
     }
     
-    .home-grid,
-    .room-grid {
+    .grid-2 {
         grid-template-columns: 1fr;
     }
     
@@ -725,45 +604,34 @@ strong {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .welcome-section h1 {
-        font-size: 2.5rem;
-    }
-    
     .welcome-image img {
         height: 200px;
     }
     
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.5rem; }
+    h1 {
+        font-size: 1.6rem;
+    }
 }
 
-/* ═══════════════════════════════════════
-   little touches ✿
-   ═══════════════════════════════════════ */
+/* extras */
 ::selection {
-    background: var(--sunset-pink);
+    background: var(--blush);
     color: white;
 }
 
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--sky-light);
+    background: var(--cream);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--grass-green);
-    border-radius: 10px;
-    border: 2px solid var(--sky-light);
+    background: var(--forest-light);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--forest-green);
-}
-
-/* dreamy image filter */
-.dreamy {
-    filter: saturate(1.05) brightness(1.02);
+    background: var(--forest);
 }
