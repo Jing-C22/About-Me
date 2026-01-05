@@ -1,18 +1,13 @@
 /*
-    ✿ cosmosteria scripts ✿
+    cosmosteria scripts
 */
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // page navigation
     function showPage(pageId, postId = null) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         
-        let targetId = pageId;
-        if (postId) {
-            targetId = pageId + '-' + postId;
-        }
-        
+        const targetId = postId ? pageId + '-' + postId : pageId;
         const page = document.getElementById(targetId);
         if (page) page.classList.add('active');
         
@@ -20,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState(null, '', '#' + pageId);
     }
     
-    // click handlers
     document.querySelectorAll('[data-page]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -28,17 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // browser navigation
     window.addEventListener('popstate', () => {
         showPage(window.location.hash.slice(1) || 'home');
     });
     
-    // check hash on load
     if (window.location.hash) {
         showPage(window.location.hash.slice(1));
     }
     
-    // filter tags
+    // filters
     document.querySelectorAll('.filter-tags .tag').forEach(tag => {
         tag.addEventListener('click', function() {
             const parent = this.parentElement;
